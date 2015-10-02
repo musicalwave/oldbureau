@@ -1,0 +1,12 @@
+<html t:type="layout" t:pageTitle="Учителя"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<ul>
+		<li t:type="loop" source="all" value="unit">
+			<a t:type="actionlink" context="unit" t:id="tLink">
+				${unit.name}
+			</a>
+		</li>
+	</ul>
+
+</html>

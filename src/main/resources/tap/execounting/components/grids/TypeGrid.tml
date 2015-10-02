@@ -1,0 +1,32 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:zone t:id="ezone">
+		<t:if test="editorActive">
+			<t:editors.addeventtype t:id="editor" />
+		</t:if>
+	</t:zone>
+
+	<t:actionlink t:id="add" zone="ezone">Добавить новый
+	</t:actionlink>
+	<br />
+	<t:grid source="source" model="model" row="unit" rowsPerPage="message:rowsperpage"
+		pagerPosition="both">
+		<p:deletedCell>
+			<t:show.smarticon icontype="icontype" />
+		</p:deletedCell>
+		<p:actionCell>
+			<div class="actionIconsContainer">
+				<t:actionlink t:id="edit" zone="ezone" context="unit">
+					<img src="icons/edit.png" class="icons" />
+				</t:actionlink>
+
+				<t:eventlink event="delete" context="unit" t:mixins="auth,confirm"
+					confirmEnabled="dispatcher.canDeleteEventTypes()" confirmMessage="message:delete-eventType-confirm-message"
+					authEnabled="!dispatcher.canDeleteEventTypes()" authMessage="message:delete-eventType-auth-message">
+					<img src="icons/trash.png" class="icons" />
+				</t:eventlink>
+			</div>
+		</p:actionCell>
+	</t:grid>
+</t:container>

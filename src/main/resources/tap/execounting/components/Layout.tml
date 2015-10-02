@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>${pageTitle}</title>
+	</head>
+	<body id="homepage" onLoad="ResizeSpace()">
+		<t:security.authenticated>
+			<!--start header -->
+			<ul id="mainmenu" class="nav">
+				<span id="spacerOne" class="spacer first">
+					<li class="last" style="line-height:30px;">${user?.fullName}</li>
+				</span>
+				<span id="spacerTwo" class="spacer middle">
+					<a href="#" t:type="pageLink" t:page="home">
+						<li class="${cssForLi('Бюро')}">
+							<img src="${context:/icons/home_32.png}"
+								style="height: 19px; width: 19px;margin-top: 4px;margin-bottom: -3px;" />
+						</li>
+					</a>
+					<a href="#" t:type="pageLink" t:page="teachers">
+						<li class="${cssForLi('Учителя')}">
+							Учителя
+						</li>
+					</a>
+					<a href="#" t:type="pageLink" t:page="clients">
+						<li class="${cssForLi('Клиенты')}">
+							Клиенты
+						</li>
+					</a>
+					<a href="#" t:type="pageLink" t:page="reports">
+						<li class="${cssForLi('Отчеты')}">
+							Отчеты
+						</li>
+					</a>
+					<a href="#" t:type="pageLink" t:page="statistics">
+						<li class="${cssForLi('Занятия')}">
+							Занятия
+						</li>
+					</a>
+					<a href="#" t:type="pageLink" t:page="schedules">
+						<li class="${cssForLi('Расписания')}">
+							Расписания
+						</li>
+					</a>
+					<a href="#" t:type="pageLink" t:page="crud" style="width:106px">
+						<li class="${cssForLi('Работа с БД')}">
+							Работа с БД
+						</li>
+					</a>
+					<a href="#" t:type="pageLink" t:page="settings">
+						<li class="${cssForLi('Настройки')}">
+							Настройки
+						</li>
+					</a>
+					<a href="#" t:type="actionlink" t:id="logout" id="logout" class="last">
+						<li>
+							Выход
+						</li>
+					</a>
+				</span>
+				<span id="spacerThree" class="spacer last" />
+			</ul>
+			<!--end header -->
+		</t:security.authenticated>
+		<!-- start page -->
+		<div id="page">
+			<!-- start content -->
+			<div id="content">
+				<div class="post">
+					<div class="entry">
+						<t:body />
+					</div>
+				</div>
+			</div>
+			<!-- end content -->
+			<br style="clear: both;" />
+		</div>
+		<!-- end page -->
+		<!-- start footer -->
+		<!--div id="footer"> <p class="legal"> &copy;2012 management. All Rights 
+			Reserved. </p> </div -->
+		<!-- end footer -->
+	</body>
+</html>

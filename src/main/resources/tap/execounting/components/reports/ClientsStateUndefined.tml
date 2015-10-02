@@ -1,0 +1,25 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter">
+    <h3>Закончился абонемент</h3>
+    <t:grid source="undefinedClients" row="client" model="model" pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
+        <p:nameCell>
+            <t:eventlink event="details" context="client.id">
+                ${client.name}
+            </t:eventlink>
+        </p:nameCell>
+        <p:lastEventDateCell>
+            ${lastEventDate}
+        </p:lastEventDateCell>
+        <p:infoCell>
+            ${info}
+        </p:infoCell>
+        <p:commentCell>
+            <div class="commentDate">
+                <t:outputraw value="commentDate"/>
+            </div>
+            <textarea model-id="${client.id}" class="cool">
+                ${comment}
+            </textarea>
+        </p:commentCell>
+    </t:grid>
+</t:container>

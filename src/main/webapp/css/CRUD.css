@@ -1,0 +1,22 @@
+div.actionIconsContainer {
+	width: 96px;
+	margin: 0px;
+	padding: 0px;
+}
+
+thead tr th.Action.t-last {
+	width: 100px;
+	padding: 0px;
+}
+
+thead tr th.deleted.t-first {
+	width: 57px;
+	padding: 0px;
+	text-align: center;
+}
+
+table.t-data-grid tbody tr td.Action {
+	padding: 6px 10px 6px 5px;
+	text-align: center;
+	width: 100px;
+}

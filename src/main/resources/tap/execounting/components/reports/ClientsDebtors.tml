@@ -1,0 +1,23 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter">
+
+    <h3>Должники</h3>
+    <t:grid source="debtors" model="model" row="client"
+            pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
+        <p:nameCell>
+            <t:eventlink event="details" context="client.id">${client.name}
+            </t:eventlink>
+        </p:nameCell>
+        <p:debtCell>
+            ${debt}
+        </p:debtCell>
+        <p:commentCell>
+            <div class="commentDate">
+                <t:outputraw value="commentDate"/>
+            </div>
+            <textarea model-id="${client.id}" class="cool">
+                ${comment}
+            </textarea>
+        </p:commentCell>
+    </t:grid>
+</t:container>

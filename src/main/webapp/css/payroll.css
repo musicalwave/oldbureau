@@ -1,0 +1,101 @@
+body {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	width: 210mm;
+	min-height: 290mm;
+}
+
+#margin {
+	margin-left: 5mm;
+}
+
+#header {
+	margin-top: 5mm;
+	text-align: center;
+}
+
+#lefttext {
+	display: inline-block;
+	position: relative;
+	right: 30mm
+}
+
+#righttext {
+	display: inline-block;
+	position: relative;
+	right: -30mm;
+}
+
+#bodytextone {
+	margin-top: 3mm;
+	width: 180mm;
+}
+
+#bodytextone :first-child {
+	margin-top: 2mm;
+}
+
+.li {
+	font-size: 11pt;
+	margin-left: 1mm;
+}
+
+table {
+	border-collapse: collapse;
+	margin: 1mm 0mm 1mm 3mm;
+}
+
+th,td {
+	border: 1px solid #333;
+	font-size: 10pt;
+	padding-right: 1mm;
+	padding-left: 1mm;
+}
+
+td.num {
+	text-align: right;
+}
+
+#bodytexttwo {
+	width: 180mm;
+}
+
+#footer {
+	margin-top: 5mm;
+	text-align: center;
+}
+
+#princesig {
+	display: inline-table;
+	position: relative;
+	right: 30mm;
+	line-height: 6.5mm;
+}
+
+#agentsig {
+	display: inline-table;
+	position: relative;
+	right: -30mm;
+	top: -6.8mm;
+	line-height: 6.5mm;
+}
+
+#tablecontainer2,#tablecontainer3 {
+	margin-top: 1em;
+}
+
+#bodytextthree, #bodytextfour {
+	font-size: 11pt;
+}
+
+#bodytextfive {
+	padding-bottom: 9px;
+	width: 65%;
+	border-bottom: 1px solid black;
+	font-size: 11pt;
+}
+
+#final {
+	margin-top: 2em;
+	font-size: 11pt;
+}

@@ -1,0 +1,308 @@
+<html t:type="layout" t:pageTitle="Учителя : ${tMed.name}"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter"
+	xmlns:ex="tapestry-library:exanpe">
+
+	<h3>${tMed.name}</h3>
+	<div id="payrollController">
+		<h4>Ведомость</h4>
+		<t:form t:id="payrollForm">
+			<div>
+				<t:datefield value="payrollDateOne" />
+			</div>
+			<div>
+				<t:datefield value="payrollDateTwo" />
+			</div>
+			<div>
+				<t:checkbox t:id="payrollFiltration" />
+				<t:label for="payrollFiltration" />
+			</div>
+			<t:submit value="message:payroll-submit-label" />
+		</t:form>
+	</div>
+	<h4 style="margin-bottom:8px;">Расписание</h4>
+	<a href="#" t:type="actionlink" t:id="scheduleEditLink" t:zone="scheduleZone">Изменить</a>
+
+	<t:zone t:id="scheduleZone" id="scheduleZone" update="show">
+		<t:if test="scheduleEdit">
+			<t:form t:id="scheduleForm" zone="scheduleZone">
+				<t:errors />
+				<table id="scheduleTable">
+					<thead>
+						<tr>
+							<th t:type="loop" t:source="days" t:value="day">${day}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="withselect">
+								<input t:type="select" t:model="facilitySelectModel"
+									t:value="tMed.unit.monday" />
+							</td>
+							<td class="withselect">
+								<input t:type="select" t:model="facilitySelectModel"
+									t:value="tMed.unit.tuesday" />
+							</td>
+							<td class="withselect">
+								<input t:type="select" t:model="facilitySelectModel"
+									t:value="tMed.unit.wednesday" />
+							</td>
+							<td class="withselect">
+								<input t:type="select" t:model="facilitySelectModel"
+									t:value="tMed.unit.thursday" />
+							</td>
+							<td class="withselect">
+								<input t:type="select" t:model="facilitySelectModel"
+									t:value="tMed.unit.friday" />
+							</td>
+							<td class="withselect">
+								<input t:type="select" t:model="facilitySelectModel"
+									t:value="tMed.unit.saturday" />
+							</td>
+							<td class="withselect">
+								<input t:type="select" t:model="facilitySelectModel"
+									t:value="tMed.unit.sunday" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="7">
+								<t:submit value="Сохранить" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</t:form>
+		</t:if>
+
+		<t:if test="!scheduleEdit">
+			<table id="scheduleTable">
+				<thead>
+					<tr>
+						<th t:type="loop" t:source="days" t:value="day">${day}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td t:type="loop" t:source="days" t:value="day">${school}</td>
+					</tr>
+				</tbody>
+			</table>
+		</t:if>
+	</t:zone>
+
+	<!--CLIENTS -->
+
+	<h3 style="margin-top: 70px; margin-bottom: 20px;">${message:clients}</h3>
+
+
+
+	<div style="width:${width}px;" id="clients block">
+		<t:zone t:id="clientsZone" id="clientsZone" update="show">
+			<t:if test="calendarCentric">
+				<t:actionlink t:id="eventsDateBackwardLink" id="eventsDateBackwardLink"
+					zone="clientsZone">
+					На месяц назад
+				</t:actionlink>&nbsp;&nbsp;&nbsp;
+				<t:actionlink t:id="eventsDateForwardLink" id="eventsDateForwardLink"
+					zone="clientsZone">
+					На месяц вперед
+				</t:actionlink>
+				<t:form zone="clientsZone" t:id="clientsDateForm">
+					<t:errors />
+					<t:datefield value="eventsDate" />
+					<t:submit value="message:submit-label" style="margin-left:15px;" />
+				</t:form>
+
+				<div
+					style="display: inline-table; width:130px; height: 45px;
+					text-align: right;padding-right: 30px;">
+					<h4 style="font-size: 1.6em">${monthName}</h4>
+				</div>
+
+
+				<t:remove>
+					<!-- Отображаем дни календаря учителя -->
+				</t:remove>
+				<div class="calendar" style="display: inline-table;">
+					<t:show.EventRow displayNull="true" displayDate="true"
+						elements="dates" />
+				</div>
+			</t:if>
+
+
+			<t:loop t:source="activeContracts" t:value="contract" class="contractBody">
+				<div style="margin-top:20px;">
+					<t:zone t:id="contractZone" id="contractZone${contract.id}"
+						update="show">
+						<div class="contractHeader">
+							<div class="student">${clientName}</div>
+							<div class="contractType">${discipline}</div>
+						</div>
+						<t:show.EventRow displayNull="true" displayDate="true"
+							elements="elements" />
+
+					</t:zone>
+				</div>
+				<ex:accordion>
+					<ex:accordionItem title="literal:Детали">
+						<t:actionlink context="contract.client" t:id="clientpagelink">
+							Перейти
+							на страницу клиента
+						</t:actionlink>
+						<br />
+
+						<div style="display:block;">
+							<t:show.showcontract contract="contract" />
+						</div>
+
+						<t:loop source="othercontracts" value="contract">
+							<t:show.minicontract contract="contract" />
+						</t:loop>
+
+					</ex:accordionItem>
+				</ex:accordion>
+			</t:loop>
+
+			<!--FROZEN AND INACTIVE CONTRACTS -->
+			<ex:accordion style="width:1100px;margin-top:40px;">
+				<ex:accordionItem title="literal:Замороженные">
+					<t:loop source="frozenContracts" value="contract">
+						<t:show.minicontract contract="contract"
+							displayName="true" />
+					</t:loop>
+				</ex:accordionItem>
+				<ex:accordionItem
+					title="literal:Остальные (если клиент не ходит больше полугода, или договор закрыт, или завершен)">
+					<t:loop source="otherTeacherContracts" value="contract">
+						<t:show.minicontract contract="contract"
+							displayName="true" />
+					</t:loop>
+				</ex:accordionItem>
+			</ex:accordion>
+
+		</t:zone>
+	</div>
+
+	<!--/CLIENTS -->
+
+	<h3 style="margin-top: 70px; margin-bottom: 20px;">${message:stats}</h3>
+	<t:zone t:id="statsZone" id="statsZone" update="shake">
+		<t:form t:id="statsDateForm" zone="statsZone">
+			<t:label for="date1" style="margin: 5px;" />
+			<t:datefield t:id="date1" />
+			<t:label for="date2" style="margin: 5px; margin-left: 25px;" />
+			<t:datefield t:id="date2" />
+			<t:submit style="margin-left: 20px;" value="message:submit-label" />
+		</t:form>
+		<table class="panel contract">
+			<tr>
+				<th>
+					Проведено уроков
+				</th>
+				<td>
+					${lessonsComplete}
+				</td>
+
+				<th>
+					Отработано дней
+				</th>
+				<td>
+					${daysWorked}
+				</td>
+			</tr>
+
+			<tr>
+				<th>
+					Занятий сгорело
+				</th>
+				<td>
+					${lessonsFired}
+				</td>
+
+				<th></th>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th>
+					Переносы педагога
+				</th>
+				<td>
+					${lessonsMovedByTeacher}
+				</td>
+
+				<th>
+					Переносы клиентов
+				</th>
+				<td>
+					${lessonsMovedByClient}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Заработал денег
+				</th>
+				<td>
+					${moneyEarned}
+				</td>
+
+				<th>
+				</th>
+				<td>
+
+				</td>
+			</tr>
+
+			<tr>
+				<th>
+					Для школы
+				</th>
+				<td>
+					${moneyEarnedForSchool}
+				</td>
+
+				<th>
+					Для себя
+				</th>
+				<td>
+					${moneyEarnedForSelf}
+				</td>
+			</tr>
+		</table>
+	</t:zone>
+
+	<h4>Комментарии:</h4>
+	<t:editors.addcomment t:id="addComment" code="0"
+		entityid="tMed.unit.id" />
+	<t:zone id="commentsZone">
+		<t:loop source="comments" value="comment">
+			<t:show.showcomment showDeleted="showDeleted"
+				comment="comment" />
+		</t:loop>
+	</t:zone>
+
+	<div t:type="if" t:test="hasShiftedLessons()">
+		<h4>Долги по перенесенным занятиям:</h4>
+		<t:loop source="shiftedLessons" value="lesson">
+			<div style="display:inline-block;">
+				<t:show.showevent event="lesson" />
+			</div>
+		</t:loop>
+	</div>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

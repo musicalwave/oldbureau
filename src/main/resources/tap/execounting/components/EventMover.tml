@@ -1,0 +1,23 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<h4>
+		${message:eventMover-label}
+	</h4>
+	<t:form>
+		<t:radiogroup t:id="transferType">
+			<div>
+				<t:radio t:id="schedule" value="literal:0"/>
+				<t:label for="schedule" />
+			</div>
+			<div>
+				<t:radio t:id="ondate" value="literal:1"
+					t:mixins="triggerfragment" fragment="datepart" />
+				<t:label for="ondate" />
+			</div>
+		</t:radiogroup>
+		<t:formfragment t:id="datepart" visible="ondatetest">
+			<t:label for="datefield" />
+			<t:datefield t:id="datefield" value="newDate" />
+		</t:formfragment>
+		<t:submit value="message:submit-label" />
+	</t:form>
+</t:container>

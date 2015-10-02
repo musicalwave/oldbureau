@@ -1,0 +1,98 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+	<t:if test="updatemode">
+		Договор от ${conDate} : Редактирование
+		<p:else>
+			Новый договор
+		</p:else>
+	</t:if>
+	<div>
+		<t:eventlink event="theCancel" zone="^"
+			style="position: relative;top: 26px;left: 647px;">${message:cancel-label}</t:eventlink>
+		<t:beaneditform t:id="editor" object="con"
+			submitlabel="message:submit-label" exclude="id,clientId,freeze,discount"
+			reorder="teacherId,typeId,contractTypeId" add="schedule" zone="^">
+			<t:errors />
+			<p:contractTypeId>
+				<t:label for="contractTypeSelect" />
+				<t:select t:id="contractTypeSelect" value="con.contractTypeId"
+					model="contractTypeIdsModel" />
+			</p:contractTypeId>
+			<p:comment>
+				<t:label for="comment" />
+				<t:textarea t:id="comment" value="con.comment" cols="20"
+					rows="7" />
+			</p:comment>
+			<p:date>
+				<t:label for="date" />
+				<t:datefield t:id="date" value="con.date" validate="required" />
+			</p:date>
+			<p:typeId>
+				<t:label for="etypes" />
+				<t:textfield t:id="etypes" value="etype" t:mixins="AutoComplete" />
+			</p:typeId>
+			<p:teacherId>
+				<t:label for="teacherName" />
+				<t:textfield t:id="teacherName" t:value="teacher" validate="none" t:mixins="AutoComplete" />
+			</p:teacherId>
+			<p:gift>
+				<div class="t-beaneditor-row">
+					<t:label for="gift" />
+					<t:checkbox t:id="gift" value="con.gift" />
+				</div>
+				<div class="t-beaneditor-row">
+					<t:label for="giftMoney" />
+					<t:textfield t:id="giftMoney" value="con.giftMoney" />
+				</div>
+			</p:gift>
+			<p:giftmoney>
+			</p:giftmoney>
+
+			<p:schedule>
+				<div class="t-beaneditor-row">
+					<h4 style="padding-left: 15%;">${message:schedule-label}</h4>
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="eventsStartDate" />
+					<t:datefield t:id="eventsStartDate" />
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="monday" />
+					<t:checkbox t:id="monday" value="con.schedule.monday" />
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="tuesday" />
+					<t:checkbox t:id="tuesday" value="con.schedule.tuesday" />
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="wednesday" />
+					<t:checkbox t:id="wednesday" value="con.schedule.wednesday" />
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="thursday" />
+					<t:checkbox t:id="thursday" value="con.schedule.thursday" />
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="friday" />
+					<t:checkbox t:id="friday" value="con.schedule.friday" />
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="saturday" />
+					<t:checkbox t:id="saturday" value="con.schedule.saturday" />
+				</div>
+
+				<div class="t-beaneditor-row">
+					<t:label for="sunday" />
+					<t:checkbox t:id="sunday" value="con.schedule.sunday" />
+				</div>
+			</p:schedule>
+		</t:beaneditform>
+	</div>
+</t:container>

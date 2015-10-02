@@ -1,0 +1,20 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+	<t:if test="updatemode">
+		Клиент ${client.name} : Редактирование
+		<p:else>
+			Новый клиент
+		</p:else>
+	</t:if>
+	<div>
+		<t:zone t:id="formaZone">
+			<t:beaneditform zone="^" t:id="form" object="client"
+				submitlabel="message:submit-label" model="model">
+                <p:managerId>
+                    <t:label for="managerId"/>
+                    <t:select t:id="managerId" value="client.managerId" model="selectModel" />
+                </p:managerId>
+			</t:beaneditform>
+		</t:zone>
+	</div>
+</t:container>

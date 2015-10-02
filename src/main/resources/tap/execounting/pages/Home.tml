@@ -1,0 +1,68 @@
+<html t:type="layout" t:pageTitle="Бюро"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+<div style="margin-left:35%;">
+
+    <t:pagelink page="teachers" class="homelink">
+        <div class="buttondiv">
+            <h2>Учителя</h2>
+
+            <div>Работа с отдельными педагогами</div>
+        </div>
+    </t:pagelink>
+
+    <t:pagelink page="reports" class="homelink">
+        <div class="buttondiv">
+            <h2>Отчеты</h2>
+
+            <div>Должники, заканчивается абонемент и т.д.</div>
+        </div>
+    </t:pagelink>
+
+    <t:pagelink page="clients" class="homelink">
+        <div class="buttondiv">
+            <h2>Клиенты</h2>
+
+            <div>Сводка и отчеты по клиентам</div>
+        </div>
+    </t:pagelink>
+
+    <t:pagelink page="statistics" class="homelink">
+        <div class="buttondiv">
+            <h2>Занятия</h2>
+
+            <div>Сводка по проведенным и запланированным занятиям, калькуляция
+                выручки
+            </div>
+        </div>
+    </t:pagelink>
+
+    <t:pagelink page="schedules" style="margin-top: 0px;"
+                class="homelink">
+        <div class="buttondiv">
+            <h2>Расписания</h2>
+
+            <div>Расписание школ и учителей</div>
+        </div>
+    </t:pagelink>
+
+    <t:pagelink page="CRUD" class="homelink">
+        <div class="buttondiv">
+            <h2>База данных</h2>
+
+            <div>Редактирование информации о: филиалах, клиентах, предметах,
+                учителях и занятиях
+            </div>
+        </div>
+    </t:pagelink>
+
+    <t:pagelink page="settings" class="homelink">
+        <div class="buttondiv">
+            <h2>Настройки</h2>
+
+            <div>Смена пароля</div>
+        </div>
+    </t:pagelink>
+
+</div>
+
+</html>

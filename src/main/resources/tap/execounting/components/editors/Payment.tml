@@ -1,0 +1,38 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter">
+
+    <!-- Support editing of sole payments -->
+    <t:if test="paymentId">
+
+        Платеж ${paymentId} : Редактирование
+        <t:form t:id="editor" t:context="paymentId" zone="^">
+            <t:errors/>
+            <t:beaneditor object="pay"/>
+            <t:submit value="message:submit-label" />
+        </t:form>
+
+    </t:if>
+
+    <!-- Support add of payment into contracts -->
+    <t:unless test="paymentId">
+
+        <t:zone t:id='zone'>
+
+            <t:unless test="editMode">
+                <t:eventlink t:event="add" zone="^" context="contractId">
+                    Добавить платеж
+                </t:eventlink>
+            </t:unless>
+
+            <t:if test="editMode">
+                <t:form t:id="adder" t:context="conId" zone="^">
+                    <t:errors/>
+                    <t:beaneditor object="pay"/>
+                    <t:submit value="message:submit-label" />
+                </t:form>
+            </t:if>
+
+        </t:zone>
+
+    </t:unless>
+</t:container>

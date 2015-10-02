@@ -1,0 +1,40 @@
+table.kate {
+	border: 1px solid #447;
+	box-shadow: 0 0 5px #447;
+}
+
+table.kate th {
+	color: white;
+	background: #474747; /* Old browsers */
+	background: -moz-linear-gradient(top, #474747 0%, #0e0e0e 69%);
+	/* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #474747),
+		color-stop(69%, #0e0e0e) ); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #474747 0%, #0e0e0e 69%);
+	/* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #474747 0%, #0e0e0e 69%);
+	/* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #474747 0%, #0e0e0e 69%);
+	/* IE10+ */
+	background: linear-gradient(to bottom, #474747 0%, #0e0e0e 69%);
+	/* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(             startColorstr='#474747',
+		endColorstr='#0e0e0e', GradientType=0 ); /* IE6-9 */
+	padding: 8px 15px 9px 20px;
+	text-align: center;
+	border: 1px solid #333;
+	box-shadow: inset 0 0 5px #666;
+}
+
+table.kate td {
+	border-right: 1px solid #668;
+	border-bottom: 1px solid #cce;
+	text-align: center;
+	padding: 15px 15px 5px 15px;
+	text-align: center;
+}
+
+table.kate td :first-child {
+	position: relative;
+	left: 30%;
+}

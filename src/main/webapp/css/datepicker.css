@@ -1,0 +1,239 @@
+div.datePicker {
+	background: Window;
+	position: relative;
+	left: 50%;
+	top: 0px;
+	width: 200px;
+	height: 200px;
+	cursor: default;
+	-moz-user-focus: normal;
+	padding: 3px;
+	border: 1px solid #AAA;
+	border-radius: 5px;
+	z-index: 30;
+}
+
+.datePicker .gridTable td {
+	font: small-caption;
+	text-align: right;
+	padding-right: 2px;
+	color: WindowText;
+	cursor: default;
+	font-weight: 400 !important;
+	-moz-user-select: none;
+	border: 1px solid #CCC;
+	width: 18px;
+	font-size: 11px;
+	background: rgb(255, 255, 255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,
+		255, 255, 1) ), color-stop(100%, rgba(229, 229, 229, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%,
+		rgba(229, 229, 229, 1) 100% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(   startColorstr='#ffffff',
+		endColorstr='#e5e5e5', GradientType=0 ); /* IE6-9 */
+}
+
+.datePicker td.red {
+	color: red;
+}
+
+.datePicker .header {
+	padding: 0px;
+}
+
+.datePicker .gridTable .daysRow td {
+	font-weight: 700 !important;
+	border: none;
+	background: none;
+	padding: 3px 0px;
+	text-align: center;
+}
+
+.daysRow {
+	margin-bottom: -3px;
+	margin-top: -1px;
+}
+
+.datePicker .gridTable .upperLine {
+	height: 0px;
+	padding: 0px;
+	border: none;
+	overflow: hidden;
+	background: transparent;
+}
+
+.datePicker td.today {
+	font-weight: 700 !important;
+}
+
+.datePicker td.selected {
+	background: Highlight;
+	color: HighlightText !important;
+}
+
+.datePicker td .topLabel,a.topLabel {
+	color: CaptionText;
+	display: block;
+	font-size: 13px;
+	font-family: Helvetica, Verdana;
+	font-weight: 700 !important;
+	width: 100%;
+	text-decoration: none;
+}
+
+tr.daysRow td {
+	text-align: center;
+	border-bottom: 1px solid #CCC;
+}
+
+.datePicker button {
+	font: Caption;
+	font-weight: 400 !important;
+	display: block;
+	border-width: 1px;
+}
+
+.datePicker .previousButton,.datePicker .nextButton {
+	width: 14px;
+	height: 14px;
+	border-radius: 6px;
+	box-shadow: inset 0px 0px 1px white;
+}
+
+.datePicker .headerTable button {
+	margin-top: 21%;
+}
+
+.datePicker .previousButton {
+	background: buttonface url("prev.png") no-repeat center center;
+}
+
+.datePicker .nextButton {
+	background: buttonface url("next.png") no-repeat center center;
+}
+
+.datePicker .todayButton,.datePicker .noneButton {
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	display: block;
+	float: left;
+	font: normal 13px Tahoma; /* Change 13px as desired */
+	line-height: 16px;
+	/* This value + 4px + 4px (top and bottom padding of SPAN) must equal height of button background (default is 24px) */
+	height: 24px; /* Height of button background height */
+	padding-left: 8px; /* Width of left menu image */
+	text-decoration: none;
+	width: 70px;
+	background: rgb(255, 255, 255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%,
+		rgba(255, 255, 255, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,
+		255, 255, 1) ), color-stop(50%, rgba(243, 243, 243, 1) ),
+		color-stop(51%, rgba(237, 237, 237, 1) ),
+		color-stop(100%, rgba(255, 255, 255, 1) ) ); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%,
+		rgba(255, 255, 255, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%,
+		rgba(255, 255, 255, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%,
+		rgba(255, 255, 255, 1) 100% ); /* IE10+ */
+	background: linear-gradient(top, rgba(255, 255, 255, 1) 0%,
+		rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%,
+		rgba(255, 255, 255, 1) 100% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(               startColorstr='#ffffff',
+		endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
+}
+
+.datePicker .labelPopup {
+	position: absolute;
+	min-width: 130px;
+	background: Window;
+	border: 1px solid #CCC;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.datePicker .labelContainer {
+	text-align: center;
+}
+
+.datePicker .labelPopup a {
+	width: 100%;
+	display: block;
+	color: WindowText;
+	text-decoration: none;
+	white-space: nowrap;
+	text-align: left;
+}
+
+.datePicker .labelPopup a:hover {
+	background: Highlight;
+	color: HighlightText;
+}
+
+.datePicker .labelPopup a.selected {
+	font-weight: 700;
+}
+
+.datePicker .headerTable,.datePicker .footerTable,.datePicker .gridTable,.datePicker td.labelContainer,.datePicker td.filler
+	{
+	width: 100%;
+}
+
+.datePicker .footer,.datePicker .grid {
+	padding: 0px;
+	margin: 0px;
+}
+
+.datePicker table {
+	margin: 0px;
+	border-spacing: 2px;
+	border-collapse: separate;
+	empty-cells: hide;
+	border-collapse: separate;
+	background: none;
+}
+
+table.headerTable {
+	background: rgb(224, 224, 224); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(224, 224, 224, 1) 0%,
+		rgba(204, 204, 204, 1) 100% ); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(224,
+		224, 224, 1) ), color-stop(100%, rgba(204, 204, 204, 1) ) );
+	/* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(224, 224, 224, 1) 0%,
+		rgba(204, 204, 204, 1) 100% ); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(224, 224, 224, 1) 0%,
+		rgba(204, 204, 204, 1) 100% ); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(224, 224, 224, 1) 0%,
+		rgba(204, 204, 204, 1) 100% ); /* IE10+ */
+	background: linear-gradient(top, rgba(224, 224, 224, 1) 0%,
+		rgba(204, 204, 204, 1) 100% ); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient(                startColorstr='#e0e0e0',
+		endColorstr='#cccccc', GradientType=0 ); /* IE6-9 */
+	border-radius: 4px;
+}
+
+table.showcontract div.datePicker td {
+	padding: 1px 0px 1px 0px;
+}
+
+table.showcontract div.datePicker .gridTable td {
+	padding: 1px 5px 1px 0px;
+	box-shadow: inset 0 0 4px #fff;
+}

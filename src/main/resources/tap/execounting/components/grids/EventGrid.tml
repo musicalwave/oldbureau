@@ -1,0 +1,25 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+	<t:grid source="source" row="event" rowsPerPage="message:rowsperpage"
+		pagerPosition="both" add="clients" exclude="Id">
+		<p:hostIdCell>
+			${hostName}
+		</p:hostIdCell>
+		<p:facilityIdCell>
+			${facilityTitle}
+		</p:facilityIdCell>
+		<p:roomIdCell>
+			${roomTitle}
+		</p:roomIdCell>
+		<p:stateCell>
+			${state}
+		</p:stateCell>
+		<p:typeIdCell>
+			${typeTitle}
+		</p:typeIdCell>
+		<p:clientsCell>
+			${clients}
+		</p:clientsCell>
+
+	</t:grid>
+</t:container>

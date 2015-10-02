@@ -1,0 +1,34 @@
+<html 	t:type="layout"
+		t:pageTitle="Работа с БД"
+      	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      	xmlns:p="tapestry:parameter">
+        
+        <ul class="nav child">
+        	<t:loop source="tabs" value="tab">
+        		<t:eventlink event="switchtab" context="tab" class="${last}">
+	        		<li class="${cssForLi}">
+	        			${tab}
+	        		</li>
+        		</t:eventlink>
+        	</t:loop>
+        </ul>
+        
+        <div style="margin-top: 30px;" class="crudcontainer">
+	        <t:if test="selectedTab.equals('Клиенты')">
+	        	<t:grids.clientgrid/>
+	        </t:if>
+	        <t:if test="selectedTab.equals('Учителя')">
+	        	<t:grids.teachergrid/>
+	        </t:if>
+	        <t:if test="selectedTab.equals('Занятия')">
+	        	<t:grids.lessongrid/>
+	        </t:if>
+	        <t:if test="selectedTab.equals('Предметы')">
+	        	<t:grids.typegrid/>
+	        </t:if>
+	        <t:if test="selectedTab.equals('Школы')">
+	        	<t:grids.facilitygrid/>
+	        </t:if>
+        </div>
+
+</html>

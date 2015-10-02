@@ -1,0 +1,38 @@
+<html t:type="layout" t:pageTitle="Настройки"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<form class="full-form" t:id="settingsForm">
+		<t:errors />
+		<table class="login">
+			<tr>
+				<th>
+					<label t:type="label" t:for="password">Новый пароль:*</label>
+				</th>
+				<td>
+					<input t:type="passwordField" t:id="password" t:validate="password" />
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label t:type="label" t:for="verifyPassword">Подтвердите новый пароль:*</label>
+				</th>
+				<td>
+					<input t:type="passwordField" t:id="verifyPassword"
+						t:validate="password" />
+				</td>
+			</tr>
+		</table>
+
+		<div class="form-submit">
+			<input type="submit" value="Сменить" />
+			или
+			<t:pageLink page="index">Отменить</t:pageLink>
+		</div>
+
+	</form>
+
+	<!--<p:sidebar> <p> Tapestry supports has built-in support JSR-303 beanvalidator 
+		API. But you can still use the @Validate annotation that was previously designed 
+		to server the same purpose. </p> </p:sidebar> -->
+
+</html>

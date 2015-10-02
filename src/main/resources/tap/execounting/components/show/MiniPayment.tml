@@ -1,0 +1,36 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter">
+
+    <t:zone id="paymentZone${paymentId}" update="show">
+        <t:if test="editMode">
+            <t:editors.payment paymentId="payId"/>
+        </t:if>
+        <t:unless test="editMode">
+            <div style="-moz-box-shadow: 0px 0px 2px #999;
+                    box-shadow: 0px 0px 2px #999; margin: 4px;
+                    width:400px;padding:2px;padding-left:5px;margin-left:10px">
+
+
+                ${paymentInfo}
+
+
+                &#09;
+                (
+                <t:eventlink context="paymentId" event="delete"
+                             t:mixins="auth,confirm" zone="^"
+                             authEnabled="!dispatcher.canDeletePayments()"
+                             authMessage="message:delete-payment-auth-message"
+                             confirmEnabled="dispatcher.canDeletePayments()"
+                             confirmMessage="message:delete-payment-confirm-message">
+                    <img src="${deleteImg}"/>
+                </t:eventlink>
+                |
+                <t:eventlink context="paymentId" event="edit" t:zone="^">
+                    <img src="${editImg}"/>
+                </t:eventlink>
+                )
+            </div>
+        </t:unless>
+    </t:zone>
+
+</t:container>

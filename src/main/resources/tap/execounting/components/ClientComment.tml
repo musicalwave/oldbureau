@@ -1,0 +1,9 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+    <t:zone class="ClientComment">
+        <t:form zone="^">
+            <t:textarea value="comment" />
+            <t:submit value="${message:submit-label}" />
+        </t:form>
+    </t:zone>
+</t:container>

@@ -1,0 +1,64 @@
+<html t:type="layout"
+		t:pageTitle="Расписания"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+      <div style="position:relative; padding-top: 40px;" >
+      	<t:zone t:id="showZone" update="none">
+	      	<div class="controller">
+		      	<t:if test="schoolmode">
+		      		Вы просматриваете школы<br/>
+			      	<t:eventlink event="viewModeChanged" zone="showZone">Переключится на учителей</t:eventlink>
+			      	
+			      	<p:else>
+			      		Вы просматриваете учителей<br/>
+			      		<t:eventlink event="viewModeChanged" zone="showZone">Переключиться на школы</t:eventlink>
+			      	</p:else>
+		      	</t:if>
+	      	</div>
+			      	
+	      	<t:if test="schoolMode">
+	      		<ul style="list-style:none;line-height:200%;font-size:130%;margin-top:20px;">
+		      		<t:loop source="facilities" value="facility">
+		      			<li>
+			      			<t:actionlink t:id="facilitySelected" context="facility"> 
+			      			${facility.name}
+			      			</t:actionlink>
+		      			</li>
+		      		</t:loop>
+		      	</ul> 
+		      	<p:else>
+					<table class="data">
+						<thead class="data">
+							<th>Педагог</th>
+							<th>Понедельник</th>
+							<th>Вторник</th>
+							<th>Среда</th>
+							<th>Четверг</th>
+							<th>Пятница</th>
+							<th>Суббота</th>
+							<th style="border-right: 1px solid black;">Воскресенье</th>
+						</thead>
+						<tbody>
+							<t:loop source="allTeachers" value="teacher">
+								<tr style="border: 1px solid black;">
+									<td><t:actionlink t:id="teacherLink" context="teacher">
+									${teacher.name}
+									</t:actionlink>
+									</td>
+									<td>${facility(teacher.monday)?.name}</td>
+									<td>${facility(teacher.tuesday)?.name}</td>
+									<td>${facility(teacher.wednesday)?.name}</td>
+									<td>${facility(teacher.thursday)?.name}</td>
+									<td>${facility(teacher.friday)?.name}</td>
+									<td>${facility(teacher.saturday)?.name}</td>
+									<td>${facility(teacher.sunday)?.name}</td>
+								</tr>
+							</t:loop>
+						</tbody>
+					</table>
+				</p:else>
+			</t:if>
+		</t:zone>
+    </div>
+
+</html>

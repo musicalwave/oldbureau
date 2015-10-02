@@ -1,0 +1,56 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<div>
+		<t:form style="margin-bottom:20px;">
+			<t:label for="nameFilter" style="margin-right:10px;" />
+			<t:textfield t:id="nameFilter" value="nameFilter" />
+			<t:submit value="Обновить" />
+		</t:form>
+	</div>
+	<t:zone t:id="ezone">
+		<t:if test="editorActive">
+			<t:editors.addclient t:id="editor" />
+		</t:if>
+	</t:zone>
+
+	<t:actionlink t:id="add" zone="ezone">Добавить нового
+	</t:actionlink>
+	<br />
+	<t:grid source="source" model="model" row="unit" rowsPerPage="message:rowsperpage"
+		pagerPosition="both">
+		<p:deletedCell>
+			<t:show.smarticon icontype="iconType" />
+		</p:deletedCell>
+		<p:nameCell>
+			<t:pagelink page="ClientPage" context="unit.id">
+				${unit.name}
+			</t:pagelink>
+		</p:nameCell>
+		<p:teachersCell>
+			${teachers}
+		</p:teachersCell>
+		<p:actionCell>
+			<div class="actionIconsContainer">
+				<t:actionlink t:id="edit" zone="ezone" context="unit">
+					<img src="icons/edit.png" class="icons" />
+				</t:actionlink>
+
+				<t:eventlink event="delete" context="unit" t:mixins="auth,confirm"
+					confirmEnabled="dispatcher.canDeleteClients()" confirmMessage="message:delete-client-confirm-message"
+					authEnabled="!dispatcher.canDeleteClients()" authMessage="message:delete-client-auth-message">
+					<img src="icons/trash.png" class="icons" />
+				</t:eventlink>
+			</div>
+		</p:actionCell>
+
+		<p:canceledCell>
+			<t:if test="unit.canceled">
+				Ушел
+			</t:if>
+			<t:if test="!unit.canceled">
+				Не ушел
+			</t:if>
+		</p:canceledCell>
+	</t:grid>
+</t:container>

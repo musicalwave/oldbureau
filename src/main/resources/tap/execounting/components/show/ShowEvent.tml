@@ -1,0 +1,51 @@
+<t:container 
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	xmlns:p="tapestry:parameter">
+	
+	<t:eventlink event="edit" zone="editor${event.id}" context="event">ред</t:eventlink><br/>
+	<t:zone t:id="bodyZone" id="editor${event.id}">
+		<t:if test="updateMode">
+	
+			<t:editors.addevent t:id="editor"/>
+			
+			<p:else>
+				<table class="entity">
+					<tr>
+						<th>${message:names-label}</th>
+						<td>${names}</td>
+					</tr>
+					<tr>
+						<th>${message:facilityId-label}</th>
+						<td>${facilityName}</td>
+					</tr>
+					<tr>
+						<th>${message:roomId-label}</th>
+						<td>${roomName}</td>
+					</tr>
+					<tr>
+						<th>${message:typeId-label}</th>
+						<td>${type}</td>
+					</tr>
+					<tr>
+						<th>${message:date-label}</th>
+						<td>${date}</td>
+					</tr>
+					<tr>
+						<th>${message:state-label}</th>
+						<td>
+							${event.state}
+						</td>
+					</tr>
+					<tr>
+						<th>${message:comment-label}</th>
+						<td>${event.comment}</td>
+					</tr>
+					<tr>
+						<th>${message:money-label}</th>
+						<td>${money}</td>
+					</tr>
+				</table>
+			</p:else>
+		</t:if>
+	</t:zone>
+</t:container>

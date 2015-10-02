@@ -1,0 +1,81 @@
+a div.buttondiv {
+  /* Gradient */
+
+  background: #f6f8f9;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #f6f8f9 0%, #edf2f4 50%, #e8eff4 51%, #f5f7f9 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f6f8f9), color-stop(50%, #edf2f4), color-stop(51%, #e8eff4), color-stop(100%, #f5f7f9));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #f6f8f9 0%, #edf2f4 50%, #e8eff4 51%, #f5f7f9 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #f6f8f9 0%, #edf2f4 50%, #e8eff4 51%, #f5f7f9 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #f6f8f9 0%, #edf2f4 50%, #e8eff4 51%, #f5f7f9 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #f6f8f9 0%, #edf2f4 50%, #e8eff4 51%, #f5f7f9 100%);
+  /* W3C */
+
+  border-radius: 3px;
+  box-shadow: 0 0 3px 0px #000, inset 0 0 5px 1px #FFF;
+  height: 90px;
+  width: 330px;
+  margin-top: 10px;
+  padding-left: 15px;
+  padding-right: 20px;
+  padding-top: 15px;
+  color: #333;
+  text-shadow: 0 0 0.03em #333;
+}
+a div.buttondiv h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  font-family: 'PT Serif';
+  color: #333;
+}
+a div.buttondiv div {
+  margin-top: 15px;
+  margin-left: 15px;
+  text-align: left;
+}
+a div.buttondiv:hover {
+  /* Gradient */
+
+  background: #ebf1f6;
+  /* Old browsers */
+
+  background: -moz-linear-gradient(top, #ebf1f6 0%, #cce5ff 50%, #93cbf9 51%, #93cbf9 52%, #d5ebfb 100%);
+  /* FF3.6+ */
+
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ebf1f6), color-stop(50%, #cce5ff), color-stop(51%, #93cbf9), color-stop(52%, #93cbf9), color-stop(100%, #d5ebfb));
+  /* Chrome,Safari4+ */
+
+  background: -webkit-linear-gradient(top, #ebf1f6 0%, #cce5ff 50%, #93cbf9 51%, #93cbf9 52%, #d5ebfb 100%);
+  /* Chrome10+,Safari5.1+ */
+
+  background: -o-linear-gradient(top, #ebf1f6 0%, #cce5ff 50%, #93cbf9 51%, #93cbf9 52%, #d5ebfb 100%);
+  /* Opera 11.10+ */
+
+  background: -ms-linear-gradient(top, #ebf1f6 0%, #cce5ff 50%, #93cbf9 51%, #93cbf9 52%, #d5ebfb 100%);
+  /* IE10+ */
+
+  background: linear-gradient(to bottom, #ebf1f6 0%, #cce5ff 50%, #93cbf9 51%, #93cbf9 52%, #d5ebfb 100%);
+  /* W3C */
+
+}
+a div.buttondiv:active {
+  margin-top: 11px;
+  margin-bottom: -1px;
+  margin-left: 1px;
+}
+.homelink {
+  text-decoration: none;
+  text-shadow: #CCC 2px 1px 5px;
+  width: 350px;
+}

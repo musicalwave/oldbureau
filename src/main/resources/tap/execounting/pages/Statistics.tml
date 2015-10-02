@@ -1,0 +1,143 @@
+<html t:type="layout" t:pageTitle="Занятия"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
+		from Layout.tml -->
+
+	<div>
+		<h3>Сводка</h3>
+		<t:zone t:id="statZone" id="statZone" update="shake">
+			<table class="stats">
+				<tr>
+					<th>
+						Всего занятий:
+					</th>
+					<td>
+						${events.size()}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Денег:
+					</th>
+					<td>
+						${money}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Деньги школы:
+					</th>
+					<td>
+						${share}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Деньги педагога:
+					</th>
+					<td>
+						${teacherShare}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Указанный процент:
+					</th>
+					<td>
+						${percentedMoney}
+					</td>
+				</tr>
+			</table>
+		</t:zone>
+	</div>
+
+	<br />
+	<br />
+	<t:form t:id="FilterForm" zone="resultZone">
+		<table class="filters panel">
+			<tr>
+				<th>
+					Педагог
+				</th>
+
+				<th>
+					Школа
+				</th>
+
+				<th>
+					Класс
+				</th>
+
+				<th>
+					Тип занятия
+				</th>
+			</tr>
+
+			<tr class="bb">
+				<td>
+					<t:select model="teacherSelect" value="teacherId"
+						blankOption="ALWAYS" blankLabel="message:blank-label" t:validate="none" />
+				</td>
+
+				<td>
+					<t:select model="facilitySelect" t:id="facilityId" value="facilityId"
+						blankOption="ALWAYS" blankLabel="message:blank-label" t:validate="none"
+						zone="roomZone" />
+				</td>
+
+				<td>
+					<t:zone t:id="roomZone">
+						<t:select model="roomSelect" value="roomId" blankOption="ALWAYS"
+							blankLabel="message:blank-label" t:validate="none" />
+					</t:zone>
+				</td>
+
+				<td>
+					<t:select model="typeSelect" value="typeId" blankOption="ALWAYS"
+						blankLabel="message:blank-label" t:validate="none" />
+				</td>
+
+			</tr>
+			<tr>
+				<th>
+					Статус
+				</th>
+
+				<th>
+					Не раньше
+				</th>
+
+				<th>
+					Не позже
+				</th>
+				<th>
+					Раcсчитываемый процент
+				</th>
+			</tr>
+			<tr>
+				<td>
+					<t:select t:id="state"
+						model="literal:0=Запланировано,1=Состоялось,3=Сгорело,4=Перенос : педагог,5=Перенос : клиент,6=Проведенные и сгоревшие"
+						blankLabel="message:blank-label" />
+				</td>
+
+				<td>
+					<t:datefield value="date1" />
+				</td>
+
+				<td>
+					<t:datefield value="date2" />
+				</td>
+				<td>
+					<t:textfield value="percent" />
+				</td>
+			</tr>
+		</table>
+		<t:submit value="Обновить" />
+	</t:form>
+
+	<t:zone t:id="resultZone" id="resultZone" update="shake">
+		<t:grids.eventgrid source="events" />
+	</t:zone>
+
+</html>

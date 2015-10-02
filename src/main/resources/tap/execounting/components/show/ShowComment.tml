@@ -1,0 +1,11 @@
+<t:container 
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	xmlns:p="tapestry:parameter">
+
+	<t:if test="show">
+		<div class="panel" style="width:250px; margin-top: 5px; padding:5px;">	
+			${comment.text}
+			<h5>${username} ${comment.date}</h5>
+		</div>
+	</t:if>
+</t:container>

@@ -1,0 +1,223 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter">
+
+<t:zone t:id="bodyZone" id="contractBody${contract.id}" update="show">
+<t:if test="updateMode">
+    <t:editors.addcontract t:id="editor"/>
+</t:if>
+
+<t:unless test="updateMode">
+
+<!-- Contract action buttons -->
+<ul class="sider panel">
+    <li>
+        <t:eventlink t:id="freeze" context="contract" zone="freezer${contract.id}">
+            <img src="${lockImg}" title="${freezeLabel}" alt="${freezeLabel}"
+                 class="icons" style="padding: 4px 8px; width: 23px;"/>
+        </t:eventlink>
+    </li>
+
+    <li>
+        <t:eventlink t:id="writeoff" context="contract.id"
+                     t:mixins="confirm" confirmEnabled="literal:true"
+                     confirmMessage="message:writeoff-confirm-message">
+            <img src="${context:/icons/writeoff.png}" title="cписать остаток"
+                 alt="cписать остаток" class="icons"/>
+        </t:eventlink>
+    </li>
+
+    <li>
+        <t:eventlink t:id="moneyback" context="contract.id"
+                     t:mixins="confirm" confirmEnabled="literal:true"
+                     confirmMessage="message:moneyback-confirm-message">
+            <img src="${context:/icons/moneyback.gif}" title="вернуть деньги"
+                 alt="вернуть деньги" class="icons"/>
+        </t:eventlink>
+    </li>
+
+    <li>
+        <t:eventlink event="edit" zone="contractBody${contract.id}"
+                     context="contract.id">
+            <img src="${context:/icons/edit_64.png}" title="редактировать"
+                 alt="редактировать" class="icons"/>
+        </t:eventlink>
+    </li>
+
+    <li>
+        <t:eventlink event="delete" context="contract.id"
+                     t:mixins="confirm,auth" authEnabled="!dispatcher.canDeleteContracts()"
+                     authMessage="message:delete-contract-auth-message" confirmEnabled="dispatcher.canDeleteContracts()"
+                     confirmMessage="message:delete-contract-confirm-message">
+            <img src="${context:/icons/trash_64.png}" title="удалить" alt="удалить"
+                 class="icons"/>
+        </t:eventlink>
+    </li>
+</ul>
+
+<!-- Freezer form. Freezer allows to set contract's freeze and unfreeze date -->
+<t:zone t:id="freezerZone" id="freezer${contractId}" update="show">
+    <t:if test="freezerActive">
+        <t:form t:id="freezeForm" context="contractId">
+            <t:hidden value="contractId"/>
+            <div class="t-beaneditor-row">
+                <t:label for="dateFreeze"/>
+                <t:datefield t:id="dateFreeze"/>
+            </div>
+            <div class="t-beaneditor-row">
+                <t:label for="dateUnfreeze"/>
+                <t:datefield t:id="dateUnfreeze"/>
+            </div>
+            <t:submit value="message:submitLabel" t:event="success" t:context="contractId"/>
+        </t:form>
+    </t:if>
+</t:zone>
+
+<!-- The show pane itself -->
+<table class="showcontract">
+
+    <!-- If contract is complete but not paid - display this RED label -->
+    <t:if test="completeNotPaid">
+        <tr style="background: #F43; color: black;">
+            <td colspan="2">
+                <strong>Завершен и не оплачен</strong>
+            </td>
+        </tr>
+    </t:if>
+
+    <!-- If contract has comment, display it -->
+    <t:if test="contract.comment">
+        <tr>
+            <td colspan="2">
+                <t:textoutput value="contract.comment"/>
+            </td>
+        </tr>
+    </t:if>
+
+    <t:if test="hasEventShiftsByClient()">
+        <tr style="font-size: 120%;color: red;">
+            <th>
+                <t:textoutput value="message:event-shifts-label"/>
+            </th>
+            <td style="font-weight: 900;text-shadow: 1px 1px 1px #888;">
+                <t:textoutput value="eventShiftsByClient"/>
+            </td>
+        </tr>
+    </t:if>
+    <tr>
+        <th>${message:teacher-label}</th>
+        <td colspan="2">${teacherName}</td>
+    </tr>
+    <tr>
+        <th>${message:etype-label}</th>
+        <td colspan="2">${etype}</td>
+    </tr>
+
+    <tr>
+        <th>${message:contractType-label}</th>
+        <td colspan="2">${contract.contractType.title}</td>
+    </tr>
+    <tr>
+        <th>${message:state-label}</th>
+        <td colspan="2">${contractState}</td>
+    </tr>
+    <tr>
+        <th>${message:date-label}</th>
+        <td colspan="2">${contractDate}</td>
+    </tr>
+    <tr>
+        <th>${message:eventsNumber-label}</th>
+        <td colspan="2">${contract.eventsNumber}</td>
+    </tr>
+    <tr>
+        <th>${message:completeCost-label}</th>
+        <td colspan="2">${contract.money}</td>
+    </tr>
+    <tr>
+        <th>${message:balance-label}</th>
+        <td colspan="2">${contract.balance}</td>
+    </tr>
+
+    <!-- Events -->
+    <tr>
+        <th>${message:events-label}</th>
+        <td>
+            <t:zone t:id="eventZone" id="contractNewEventZone${contract.id}"
+                    update="show">
+                <strong>Занятий осталось:</strong>
+                ${contract.eventsRemain}
+                <br/>
+                <br/>
+                Проведенные занятия:
+
+                <t:if test="addingEvent">
+                    <t:editors.addEvent t:id="eventEditor" event="newEvent"/>
+                    <p:else>
+                        <t:eventlink t:zone="contractNewEventZone${contract.id}"
+                                     event="addEvent" context="contract.id">${message:addEventToContract}
+                        </t:eventlink>
+                    </p:else>
+                </t:if>
+
+
+                <t:loop source="events" value="loopEvent">
+                    <div
+                            style="-moz-box-shadow: 0px 0px 2px #999;
+									box-shadow: 0px 0px 2px #999; margin: 4px;
+									width:400px;padding:2px;padding-left:5px;margin-left:10px">
+                        ${eventInfo} &#09;
+                        (
+                        <t:eventlink context="loopEvent.id" event="deleteEvent"
+                                     t:mixins="auth,confirm" confirmEnabled="dispatcher.canDeleteEvents()"
+                                     confirmMessage="message:delete-event-confirm-message"
+                                     authEnabled="!dispatcher.canDeleteEvents()"
+                                     authMessage="message:delete-event-auth-message">${message:deletelink-label}
+                        </t:eventlink>
+                        |
+                        <t:eventlink context="[loopEvent.id,contract.id]"
+                                     event="editEvent"
+                                     t:zone="contractNewEventZone${contract.id}">${message:editlink-label}
+                        </t:eventlink>
+                        )
+                        <t:if test="loopEvent.comment">
+                            <br/>
+                            &#09;${loopEvent.comment}
+                        </t:if>
+                    </div>
+                </t:loop>
+
+                На сумму: ${contract.completeEventsCost}
+            </t:zone>
+        </td>
+    </tr>
+
+    <!-- Payments -->
+    <tr>
+        <th>${message:payments-label}</th>
+        <td>
+            <t:zone t:id="paymentZone" id="paymentZone${contract.id}" update="show">
+
+                <t:editors.payment contractId="contract.id"/>
+                <t:loop source="payments" value="loopPayment">
+                    <t:show.minipayment paymentId="loopPayment.id"/>
+                </t:loop>
+                Итого: ${contract.moneyPaid}
+            </t:zone>
+        </td>
+    </tr>
+
+    <!-- What discount does contract has -->
+    <t:if test="contract.discount">
+        <tr>
+            <th>${message:discount-label}</th>
+            <td colspan="2">${contract.discount}</td>
+        </tr>
+    </t:if>
+    <t:if test="contract.gift">
+        <tr>
+            <td colspan="2">Подарок</td>
+        </tr>
+    </t:if>
+</table>
+</t:unless>
+</t:zone>
+</t:container>

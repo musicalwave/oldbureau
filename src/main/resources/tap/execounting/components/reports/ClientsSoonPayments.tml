@@ -1,0 +1,40 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="tapestry:parameter ">
+    <h3>Платеж в ближайшие 2 недели</h3>
+    <t:grid source="source" model="model" row="client"
+            pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
+        <p:nameCell>
+            <t:eventlink event="details" context="client.id">
+                ${client.name}
+            </t:eventlink>
+        </p:nameCell>
+        <p:paymentsInfoCell>
+            <t:loop source="client.plannedPayments" value="loopPayment">
+                <t:show.minipayment paymentId="loopPayment.id"/>
+            </t:loop>
+        </p:paymentsInfoCell>
+        <p:commentCell>
+            <div class="commentDate">
+                <t:outputraw value="commentDate"/>
+            </div>
+            <textarea model-id="${client.id}" class="cool">
+                ${comment}
+            </textarea>
+        </p:commentCell>
+    </t:grid>
+    <t:block t:id="confirmBlock">
+        <t:eventlink event="delete" context="loopPayment.id"
+                     t:zone="paymentBody${loopPayment.id}">
+			<span t:type="any" t:mixins="confirm" t:confirmEnabled="true"
+                  t:confirmMessage="message:delete-payment-confirmation-message">удалить</span>
+        </t:eventlink>
+    </t:block>
+    <t:block t:id="authBlock">
+        <t:eventlink event="delete" context="loopPayment.id"
+                     t:zone="paymentBody${loopPayment.id}">
+			<span t:type="any" t:mixins="auth"
+                  t:authMessage="message:delete-payment-auth-message">удалить</span>
+        </t:eventlink>
+    </t:block>
+</t:container>

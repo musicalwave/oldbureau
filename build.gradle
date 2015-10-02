@@ -1,0 +1,117 @@
+description = 'execounting application'
+
+apply plugin: 'war'
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'jetty'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+group = 'tap'
+version = '4.9.4'
+
+
+repositories {
+    mavenCentral()
+
+    // All things JBoss/Hibernate
+    //mavenRepo name: 'JBoss', url: 'http://repository.jboss.org/nexus/content/groups/public/'
+
+    // For stable versions of the tapx libraries
+    //mavenRepo name: 'HLS', url: 'http://howardlewisship.com/repository/'
+
+    // For non-stable versions of the tapx libraries
+    //mavenRepo name: 'HLS Snapshots', url: 'http://howardlewisship.com/snapshot-repository/'
+
+    // For access to Apache Staging (Preview) packages
+    //mavenRepo name: 'Apache Staging', url: 'https://repository.apache.org/content/groups/staging'
+}
+
+// This simulates Maven's "provided" scope, until it is officially supported by Gradle
+// See http://jira.codehaus.org/browse/GRADLE-784
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+    test {
+        compileClasspath += configurations.provided
+        runtimeClasspath += configurations.provided
+    }
+}
+
+dependencies {
+
+	// Tapestry things
+	// Tapestry release version 5.3.6
+    compile "org.apache.tapestry:tapestry-core:5.3.6"
+	compile "org.apache.tapestry:tapestry-beanvalidator:5.3.6"
+    // This adds automatic compression of JavaScript and CSS in production mode:
+    compile "org.apache.tapestry:tapestry-yuicompressor:5.3.6"
+	
+	// Hibernate things
+	compile "org.apache.tapestry:tapestry-hibernate:5.3.6"
+	compile "org.hibernate:hibernate-validator:4.3.0.Final"
+	// C3P0
+    compile "org.hibernate:hibernate-c3p0:3.6.0.Final"
+    compile "c3p0:c3p0:0.9.1"
+    
+    // MYSQL
+    compile "mysql:mysql-connector-java:5.1.24"
+    
+    // Tagselect ( multiple names for event visitors )
+    compile "se.unbound:tapestry-tagselect:1.4.1"
+    // Exanpe components ( project uses accordeons from that library )
+    compile "fr.exanpe:exanpe-t5-lib:1.2.1"
+
+	// MD5 function provider
+	compile "commons-codec:commons-codec:1.7"
+
+    provided "javax.servlet:servlet-api:2.5"
+    //groovy "org.codehaus.groovy:groovy-all:2.1.1"
+    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+    testCompile 'org.spockframework:spock-tapestry:0.7-groovy-2.0'
+    testCompile 'org.seleniumhq.selenium:selenium-java:2.47.0'
+    testCompile 'org.gebish:geb-spock:0.9.0-RC-1'
+    testCompile 'junit:junit:4.11'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("build/classes/main")
+        testOutputDir = file('build/classes/test')
+
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+[jettyRun, jettyStop]*.stopPort = 8090
+[jettyRun, jettyStop]*.stopKey = 'banana'
+
+//jettyRun.daemon = true
+
+//task webStart(dependsOn: 'war')  {
+//    def jettyRun = tasks.getByPath('jettyRun')
+//    jettyRun.daemon = true
+//    //jettyRun.stopPort = stopPort
+//    //jettyRun.stopKey = safeWord
+//    jettyRun.execute()
+//}
+
+//task webStop  {
+//    def jettyStop = tasks.getByPath('jettyStop')
+//    //jettyStop.stopPort = stopPort
+//    //jettyStop.stopKey = safeWord
+//    jettyStop.execute()
+//}
+
+//test.dependsOn webStart

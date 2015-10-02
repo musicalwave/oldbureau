@@ -1,0 +1,29 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+	<t:if test="updatemode">
+		Тип занятия ${etype.title} : Редактирование
+		<p:else>
+			Новый тип занятия
+		</p:else>
+	</t:if>
+	<div>
+		<form t:type="form">
+			<t:beaneditor object="etype" exclude="id" />
+			<div class="t-beaneditor-row">
+				<label t:type="label" for="probationLauncher" />
+				<input t:type="checkbox" t:id="probationLauncher" t:mixins="triggerfragment"
+					fragment="probation" />
+			</div>
+			<t:formfragment t:id="probation" visible="probationLauncher">
+				<div class="t-beaneditor-row">
+					<label t:type="label" for="probationerSubtract" />
+					<input t:type="textfield" t:id="probationerSubtract"
+						value="probationAddition.additionValue" validate="required,min=0" />
+				</div>
+			</t:formfragment>
+			<div class="t-beaneditor-row">
+				<submit t:type="submit" value="message:submit-label" />
+			</div>
+		</form>
+	</div>
+</t:container>

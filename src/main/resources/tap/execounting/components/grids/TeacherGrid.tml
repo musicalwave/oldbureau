@@ -1,0 +1,58 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:zone t:id="tzone">
+		<t:if test="editorActive">
+			<t:editors.addteacher t:id="editor" />
+		</t:if>
+	</t:zone>
+
+	<t:actionlink t:id="add" zone="tzone">Добавить нового
+	</t:actionlink>
+	<br />
+	<t:grid source="source" model="model" row="unit" rowsPerPage="message:rowsperpage"
+		pagerPosition="both">
+		<p:deletedCell>
+			<t:show.smarticon icontype="icontype" />
+		</p:deletedCell>
+		<p:mondayCell>
+			${facility(unit.monday)?.name}
+		</p:mondayCell>
+		<p:tuesdayCell>
+			${facility(unit.tuesday)?.name}
+		</p:tuesdayCell>
+		<p:wednesdayCell>
+			${facility(unit.wednesday)?.name}
+		</p:wednesdayCell>
+		<p:thursdayCell>
+			${facility(unit.thursday)?.name}
+		</p:thursdayCell>
+		<p:fridayCell>
+			${facility(unit.friday)?.name}
+		</p:fridayCell>
+		<p:saturdayCell>
+			${facility(unit.saturday)?.name}
+		</p:saturdayCell>
+		<p:sundayCell>
+			${facility(unit.sunday)?.name}
+		</p:sundayCell>
+
+		<p:activeCell>
+			${state(unit)}
+		</p:activeCell>
+
+		<p:actionCell>
+			<div class="actionIconsContainer">
+				<t:actionlink t:id="edit" zone="tzone" context="unit">
+					<img src="icons/edit.png" class="icons" />
+				</t:actionlink>
+
+				<t:eventlink event="delete" context="unit" t:mixins="auth,confirm"
+					authEnabled="!dispatcher.canDeleteTeachers()" authMessage="message:delete-teacher-auth-message"
+					confirmEnabled="dispatcher.canDeleteTeachers()" confirmMessage="message:delete-teacher-confirm-message">
+					<img src="icons/trash.png" class="icons" />
+				</t:eventlink>
+			</div>
+		</p:actionCell>
+	</t:grid>
+</t:container>

@@ -1,0 +1,197 @@
+<html t:type="layout" t:pageTitle="Клиенты"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<ul class="nav child">
+		<t:pagelink page="clients" class="activeMenuItem">
+			<li>Сводка</li>
+		</t:pagelink>
+		<t:pagelink page="reports" class="last">
+			<li>Отчеты</li>
+		</t:pagelink>
+	</ul>
+
+	<t:form t:id="filterform">
+		<h4>Фильтры</h4>
+		<table class="filters panel">
+			<tr>
+				<th colspan="2" class="rb">
+					С нами с
+				</th>
+				<th colspan="2">
+					Имеет договора за период
+				</th>
+			</tr>
+			<tr>
+				<th>
+					Не раньше
+				</th>
+				<th class="rb">
+					Не позже
+				</th>
+				<th>
+					Не раньше
+				</th>
+				<th>
+					Не позже
+				</th>
+				<th>
+					Тип договора
+				</th>
+                <th>
+                    Менеджер
+                </th>
+			</tr>
+			<tr class="bb">
+				<td>
+					<t:datefield value="fcEarlyDate" />
+				</td>
+				<td class="rb">
+					<t:datefield value="fcLaterDate" />
+				</td>
+				<td>
+					<t:datefield value="acDate1" />
+				</td>
+				<td>
+					<t:datefield value="acDate2" />
+				</td>
+				<td>
+					<t:select t:id="contractType" model="contractTypeIdsModel"
+						value="contractTypeId" />
+				</td>
+                <td>
+                    <t:select value="managerId" model="selectManager"/>
+                </td>
+			</tr>
+
+			<tr>
+				<!-- Above name - clear -->
+				<th></th>
+				<!-- Above client state -->
+				<th colspan="3" class="rb">
+					Статус клиента
+				</th>
+				<!-- Above Payments -->
+				<th colspan="2">
+					Платежи
+				</th>
+			</tr>
+
+			<tr>
+				<th>
+					Имя
+				</th>
+				<th>
+					Значение
+				</th>
+				<th colspan="2" class="rb">
+					Период приобретения
+				</th>
+				<th>
+					Не раньше:
+				</th>
+				<th>
+					Не позже:
+				</th>
+			</tr>
+			<tr>
+				<td>
+					<t:textfield value="name" />
+				</td>
+				<td>
+					<t:select t:id="studStatus" value="state" />
+				</td>
+				<td>
+					<t:datefield t:id="statusAcquisitionDateEarlier" />
+				</td>
+				<td class="rb">
+					<t:datefield t:id="statusAcquisitionDateLater" />
+				</td>
+				<td>
+					<t:datefield value="pfEarlierDate" />
+				</td>
+				<td>
+					<t:datefield value="pfLaterDate" />
+				</td>
+			</tr>
+		</table>
+		<t:submit value="message:submitfilter-label" zone="gridzone" />
+	</t:form>
+
+	<t:zone t:id="statZone">
+		<h4>Счетчики</h4>
+		<table class="filters panel">
+			<tr>
+				<th colspan="2" style="border-right: 1px solid #303030;">
+					<strong>Договора</strong>
+				</th>
+
+				<th style="border-right: 1px solid #303030;">
+					<strong>Клиенты</strong>
+				</th>
+				<th colspan="4">
+					<strong>Финансы</strong>
+				</th>
+			</tr>
+			<tr>
+				<!-- Contracts -->
+				<th>
+					Активных
+				</th>
+				<th style="border-right: 1px solid #303030;">
+					Заморожено
+				</th>
+				<!-- Clients -->
+				<th style="border-right: 1px solid #303030;">
+					Всего
+				</th>
+				<!-- Financial data -->
+				<th>
+					Платежи : Есть
+				</th>
+				<th>
+					Платежи : План
+				</th>
+				<th>
+					Кредиторская задолженность
+				</th>
+				<th>
+					Сертификаты
+				</th>
+			</tr>
+			<tr>
+				<!-- Contracts section -->
+				<td>
+					${activeContracts}
+				</td>
+				<td style="border-right: 1px solid #303030;">
+					${freezedContracts}
+				</td>
+				<!-- Clients section -->
+				<td style="border-right: 1px solid #303030;">
+					${totalClients}
+				</td>
+				<!-- Financial data -->
+				<td>
+					${realPayments}
+				</td>
+				<td>
+					${scheduledPayments}
+				</td>
+				<td>
+					${creditorsDebt}
+				</td>
+				<td>
+					${certificateMoney}
+				</td>
+			</tr>
+		</table>
+	</t:zone>
+
+	<br />
+	<br />
+	<t:zone t:id="gridzone">
+		<t:grids.ClientGridNCD source="clients" />
+	</t:zone>
+
+
+</html>

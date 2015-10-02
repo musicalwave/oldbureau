@@ -1,0 +1,20 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+             xmlns:p="tapestry:parameter">
+    <h3>Договор заморожен</h3>
+    <t:grid source="source" model="model" row="contract"
+            pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
+        <p:nameCell>
+            <t:eventlink event="details" context="contract.client.id">${contract.client.name}
+            </t:eventlink>
+        </p:nameCell>
+
+        <p:commentCell>
+            <div class="commentDate">
+                <t:outputraw value="commentDate"/>
+            </div>
+            <textarea model-id="${contract.client.id}" class="cool">
+                ${comment}
+            </textarea>
+        </p:commentCell>
+    </t:grid>
+</t:container>

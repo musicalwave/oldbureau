@@ -1,0 +1,3 @@
+lessc style.less > style.css
+lessc comments.less > comments.css
+lessc home.less > home.css

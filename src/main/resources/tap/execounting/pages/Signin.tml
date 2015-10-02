@@ -1,0 +1,29 @@
+<html t:type="layout" t:pageTitle="Вход"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<img src="images/logo.png"
+		style="margin-left: 39%; margin-top: 5%; width: 150px; padding-left: 48px;" />
+
+	<form t:type="form" class="full-form" t:id="loginForm" style="margin-left: 42%;">
+
+		<t:errors />
+		<table class="login">
+			<tr>
+				<td>
+					<input t:type="textfield" t:id="username" t:validate="username" placeholder="${message:username-label}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="password" t:type="passwordfield" t:id="password"
+						t:validate="password" placeholder="${message:password-label}" />
+				</td>
+			</tr>
+		</table>
+
+		<div class="form-submit">
+			<input type="submit" value="Войти" class="btn"/>
+		</div>
+	</form>
+
+</html>

@@ -1,0 +1,28 @@
+<t:container 
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	xmlns:p="tapestry:parameter">
+		<div class="minicontract">
+			<div id="namerow" class="row" t:type="if" t:test="displayName">
+				${contract.client.name}
+			</div>
+			<div id="daterow" class="row">
+				${contractDate}
+			</div>
+			<div id="typerow" class="row">
+				${type}
+			</div>
+			<div id="eventsrow" class="row">
+				${eventsinfo}
+			</div>
+			<div id="paymentsrow" class="row">
+				${paymentsinfo}
+			</div>
+			<div id="state" class="row">
+				${state}
+			</div>
+			<div id="url" class="row">
+				<a t:type="pagelink" t:page="ClientPage" t:context="${contract.client.id}"
+				anchor="contractBody${contract.id}" href="#">Смотреть</a>
+			</div>
+		</div>
+</t:container>

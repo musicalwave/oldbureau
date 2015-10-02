@@ -1,0 +1,50 @@
+.majorinfo{
+    width:820px;
+    display:table;
+}
+table.stats {
+    display:table-cell;
+    width:500px;
+    margin-right:20px;
+}
+.ClientComment {
+    display:.ClientComment;
+    width:300px;
+}
+.ClientComment form{
+    padding: 0;
+    margin: 0;
+}
+.ClientComment form textarea{
+    margin:0;
+    display: block;
+    height: 100px;
+    width: 300px;
+    -webkit-transition: all .2s ease-in-out;
+    outline:none;
+    border-radius: 3px;
+    border: 1px solid #777;
+}
+.ClientComment form textarea:focus{
+    outline: 2px #000;
+    box-shadow: 0 0 10px hsl(207, 100%, 50%);
+}
+.ClientComment form input[type="submit"]{
+    display: block;
+    border: 1px solid #888;
+    box-shadow: inset 0 0 2px #ddd;
+    border-radius: 3px;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    background: hsl(207, 100%, 50%);
+    background: linear-gradient(to bottom, #7abcff 0%,#60abf8 44%,#4096ee 100%);
+    background: -webkit-linear-gradient(top, #7abcff 0%,#60abf8 44%,#4096ee 100%);
+    color: #e5e5e5;
+    font-weight: 800;
+    -webkit-transition: all .2s ease-in-out;
+}
+.ClientComment form input[type="submit"]:active{
+    box-shadow: 0;
+    background: linear-gradient(to bottom, #76b9fb 0%,#5ca8f5 44%,#3c92ea 100%);
+    background: -webkit-linear-gradient(top, #76b9fb 0%,#5ca8f5 44%,#3c92ea 100%);
+}

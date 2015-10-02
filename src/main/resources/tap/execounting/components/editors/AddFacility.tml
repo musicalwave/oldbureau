@@ -1,0 +1,12 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	<t:if test="updatemode">
+		Школа ${facility.name} : Редактирование
+		<p:else>
+			Новая школа
+		</p:else>
+	</t:if>
+	<div>
+	<t:beaneditform object="facility" submitlabel="message:add-facility" 
+	exclude="facilityid" />
+	</div>
+</t:container>

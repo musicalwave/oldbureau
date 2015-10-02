@@ -1,0 +1,74 @@
+<html t:type="layout"
+		t:pageTitle="Расписания"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+        
+	<h3>
+		Расписание : ${teacher.name}<br/><br/>
+		${formatteddate}
+	</h3>
+	<t:form t:id="datecontroller">
+	    <table class="panel"
+	    style="position: absolute; top:50px;right:5%;height:120px;margin-bottom:30px; width: 310px; z-index: 1;">
+	    	<tr>
+		    	<th>
+		    		${message:teacher-label}
+		    	</th>
+		    	<td>
+		    		<t:select model="teacherSelectModel" value="teacherId" />		    	
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<th>
+	    			${message:date-label}
+	    		</th>
+		    	<td>
+		    		<t:datefield value="firstdate" /><br/>
+		    	</td>
+	    	</tr>
+	    	<tr>
+		    	<td style="padding-left:10px;">
+		    		<t:actionlink t:id="weekbackward">неделю назад </t:actionlink>
+		    	</td>
+		    	<td style="padding-left:20px;">
+		    		<t:actionlink t:id="weekforward">неделю вперед</t:actionlink>
+		    	</td>
+	    	</tr>
+	    	<tr>
+	    		<td colspan="2" style="padding-left:10px;">
+	    			<t:submit value="message:submit-label"/>
+	    		</td>
+	    	</tr>
+	    </table>
+	</t:form>
+	
+	<div
+	style="position: absolute; top:180px;right:5%;left:5%;width:90%">
+	    <t:zone t:id="editZone" elementName="div">
+	    	<t:if test="adding">
+	    		<t:editors.addevent t:id="eventEditor"/>
+	    	</t:if>
+	    </t:zone>
+	    <t:actionlink t:id="addNew" zone="editZone">Добавить новое занятие</t:actionlink>
+	    <table class="data">
+	    	<tr>
+	    		<t:loop source="datedata" value="singledate">
+	    			<th class="rb lb wb">
+	    				${singledate}
+	    			</th>
+	    		</t:loop>
+	    	</tr>
+	    	<t:loop source="rows" value="row">
+	    		<tr>
+	    			<t:loop source="dates" value="date">
+	    				<td class="rb lb">
+	    					<t:if test="event">
+	    						<t:show.showevent event="event"/>
+	    					</t:if>
+	    				</td>
+	    			</t:loop>
+	    		</tr>
+	    	</t:loop>
+	    </table>
+    </div>
+</html>

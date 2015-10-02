@@ -1,0 +1,15 @@
+<html t:type="layout" t:pageTitle="Клиенты : Телефон"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	xmlns:p="tapestry:parameter">
+
+    <table>
+        <tr><th>Клиент</th><th>Баланс</th></tr>
+        <t:loop source="clients" value="client">
+            <tr>
+                <td>${client.name}</td>
+                <td>${client.phoneNumber}</td>
+            </tr>
+        </t:loop>
+    </table>
+
+</html>

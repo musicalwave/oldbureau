@@ -1,0 +1,13 @@
+<t:container 
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	xmlns:p="tapestry:parameter">
+
+	<div style="display: inline-table;">
+		<t:loop source="elements" value="element" >
+			<t:if test="display">
+				<t:show.eventcell element="element" displayDate="displayDate"/>
+			</t:if>
+		</t:loop>
+	</div>
+	
+</t:container>

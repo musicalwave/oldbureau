@@ -1,0 +1,59 @@
+table.showcontract {
+	border-spacing: 0px;
+	-moz-box-shadow: 0 0 5px black;
+	box-shadow: 0 0 5px black;
+	width: 650px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+table.showcontract th,table.showcontract td {
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	line-height: 20px;
+	vertical-align: top;
+}
+
+table.showcontract th {
+	width: 170px;
+	padding-right: 5px;
+	-moz-box-shadow: 1px 1px 3px black;
+	box-shadow: 1px 1px 3px black;
+}
+
+table.showcontract td {
+	padding-left: 13px;
+	border-bottom: 1px dashed #999
+}
+
+table.showcontract th div {
+	display: inline-table;
+	transparency: 0;
+	height: 0px;
+	width: 0px;
+	box-shadow: 1px 0px 3px black;
+	margin-left: 5px;
+	margin-top: -10px;
+	background-color: #CCC;
+}
+
+tbody :last-child td {
+	border-bottom: 0px;
+}
+
+ul.sider {
+	margin-top: 2px;
+	width: 250px;
+	list-style: none;
+	padding: 5px;
+	position: relative;
+	left: 391px;
+	top: 12px;
+}
+
+ul.sider li {
+	display: table-cell;
+	padding-top: 6px;
+}

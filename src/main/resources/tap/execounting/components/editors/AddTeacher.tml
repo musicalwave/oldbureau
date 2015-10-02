@@ -1,0 +1,45 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+	<t:if test="updatemode">
+		Педагог ${teacher.name} : Редактирование
+		<p:else>
+			Новый педагог
+		</p:else>
+	</t:if>
+	<div>
+		<t:zone t:id="formaZone">
+			<t:beaneditform zone="^" t:id="form" object="teacher" submitlabel="message:submit-label"
+				exclude="id">
+				<p:monday>
+					<t:label for="monday" />
+					<t:select t:id="monday" value="teacher.monday" model="facilityselect" />
+				</p:monday>
+				<p:tuesday>
+					<t:label for="tuesday" />
+					<t:select t:id="tuesday" value="teacher.tuesday" model="facilityselect" />
+				</p:tuesday>
+				<p:wednesday>
+					<t:label for="wednesday" />
+					<t:select t:id="wednesday" value="teacher.wednesday"
+						model="facilityselect" />
+				</p:wednesday>
+				<p:thursday>
+					<t:label for="thursday" />
+					<t:select t:id="thursday" value="teacher.thursday" model="facilityselect" />
+				</p:thursday>
+				<p:friday>
+					<t:label for="friday" />
+					<t:select t:id="friday" value="teacher.friday" model="facilityselect" />
+				</p:friday>
+				<p:saturday>
+					<t:label for="saturday" />
+					<t:select t:id="saturday" value="teacher.saturday" model="facilityselect" />
+				</p:saturday>
+				<p:sunday>
+					<t:label for="sunday" />
+					<t:select t:id="sunday" value="teacher.sunday" model="facilityselect" />
+				</p:sunday>
+			</t:beaneditform>
+		</t:zone>
+	</div>
+</t:container>

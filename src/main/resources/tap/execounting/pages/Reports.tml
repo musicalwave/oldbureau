@@ -1,0 +1,71 @@
+<html t:type="layout" t:pageTitle="Отчеты"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<t:eventlink id="aj" event="AJ" />
+	<t:eventlink id="ajpoll" event="AJpoll" />
+	<!-- Switcher clients / reports -->
+	<ul class="nav child">
+		<t:pagelink page="clients">
+			<li>Сводка</li>
+		</t:pagelink>
+		<t:pagelink page="reports" class="activeMenuItem last">
+			<li>Отчеты</li>
+		</t:pagelink>
+	</ul>
+
+	<!-- Tabs -->
+	<ul class="tabs">
+		<a href="#ending">
+			<li>Договор истекает</li>
+		</a>
+		<a href="#ended">
+			<li>Договор истек</li>
+		</a>
+		<a href="#payment">
+			<li>Скоро платеж</li>
+		</a>
+		<a href="#frozen">
+			<li>Замороженные</li>
+		</a>
+		<a href="#debtors">
+			<li>Должники</li>
+		</a>
+	</ul>
+
+	<!-- Switcher for tables pagination -->
+	<span style="position: absolute; top: 90px; right: 70px;">
+		<t:form t:id="switchPagesForm">
+			<t:checkbox t:id="switchPages" value="switchPages"
+				onclick="this.form.submit()" />
+			<t:label for="switchPages" />
+		</t:form>
+	</span>
+
+	<!-- Report tables -->
+	<!-- Contract is ending -->
+	<div id="ending" style="margin-top:60px;" class="datatable">
+		<t:reports.ContractsExpiring pagerPosition="pagerPosition" rows="rows"/>
+	</div>
+
+	<!-- Clients whose contracts are ended -->
+	<div id="ended" style="margin-top:60px;" class="datatable">
+        <t:progressivedisplay>
+            <t:reports.ClientsStateUndefined pagerPosition="pagerPosition" rows="rows" />
+        </t:progressivedisplay>
+	</div>
+
+
+	<!-- Who should pay in next two weeks -->
+	<div id="payment" style="margin-top:30px;" class="datatable">
+		<t:reports.ClientsSoonPayments pagerPosition="pagerPosition" rows="rows" />
+	</div>
+
+	<!-- Guys with frozen contracts -->
+	<div id="frozen" style="margin-top:30px;" class="datatable">
+        <t:reports.ContractsFrozen pagerPosition="pagerPosition" rows="rows" />
+	</div>
+
+	<!-- Debtors -->
+	<div id="debtors" style="margin-top:30px;">
+        <t:reports.ClientsDebtors pagerPosition="pagerPosition" rows="rows" />
+	</div>
+</html>

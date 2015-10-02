@@ -1,0 +1,64 @@
+<html t:type="layout" t:pageTitle="Клиенты : ${client.name}" 
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	xmlns:p="tapestry:parameter">
+
+    <span style="position: absolute; top: 60px; right: 60px;">
+        <t:form>
+            <t:checkbox t:id="switchEditor" value="editorActiveAlways" onclick="this.form.submit();"/>
+            <t:label for="switchEditor"/>
+        </t:form>
+    </span>
+    <span style="position: absolute; top: 90px; right: 85px;">
+        <t:form>
+            <t:checkbox t:id="switchEventEditor" value="constantEventEditor" onclick="this.form.submit();"/>
+            <t:label for="switchEventEditor"/>
+        </t:form>
+    </span>
+
+	<h3>${client.name}</h3>
+	<h4 class="phone">${client.phoneNumber}</h4>
+
+	<div class="majorinfo">
+	    <!--stats-->
+        <table class="stats">
+            <tr>
+                <th>Занимается у:</th>
+                <td>${currentTeachersInfo}</td>
+            </tr>
+            <tr>
+                <th>С нами с:</th>
+                <td>${firstContractDate}</td>
+            </tr>
+            <tr>
+                <th>Баланс:</th>
+                <td>${client.balance}</td>
+            </tr>
+            <tr>
+                <th>Действующих договоров:</th>
+                <td>${client.activeContracts.size()}</td>
+            </tr>
+            <tr>
+                <th>Всего договоров:</th>
+                <td>${client.contracts.size()}</td>
+            </tr>
+            <tr>
+                <th>На сумму:</th>
+                <td>${client.return}</td>
+            </tr>
+        </table>
+        <t:ClientComment clientId="client.id"/>
+    </div>
+	
+	<t:zone t:id="ezone" update="show">
+		<t:if test="editorActive">
+			<t:editors.addcontract t:id="editor"/>
+			<p:else>
+				<t:eventlink event="addContract" zone="ezone">Добавить договор</t:eventlink>
+			</p:else>
+		</t:if>
+	</t:zone>
+	
+	<t:loop source="contracts" value="contract">
+		<t:show.showcontract contract="contract" />
+	</t:loop>
+</html>

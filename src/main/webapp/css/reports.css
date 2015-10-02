@@ -1,0 +1,14 @@
+#content {
+	margin-left: 80px;
+}
+.tabs {
+	position: fixed;
+	top: 75px;
+	left: -21px;
+	list-style: none;
+}
+
+div.entry div {
+	padding-top: 2em;
+	width: 98%;
+}

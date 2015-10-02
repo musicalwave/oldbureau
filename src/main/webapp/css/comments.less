@@ -1,0 +1,43 @@
+table.t-data-grid {
+  th.comment {
+    width: 333px;
+  }
+  tbody tr td.comment {
+    padding: 0px;
+  }
+}
+
+textarea.cool {
+  border-radius: 3px;
+  border: 0px;
+  resize: none;
+  outline: 1px #55f;
+  box-shadow: inset 0 0 5px #333;
+  position: relative;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  width: 97%;
+  height: 4em;
+  -webkit-transition: all .3s ease;
+  padding: 6px 0px 6px 6px;
+  font-family: Helvetica, Arial, sans-serif;
+  &:focus{
+    box-shadow: 0 0 4px #70aeff, 0 0 1px 1px #658fff;
+  }
+
+  &.inTransit {
+    box-shadow: 0 0 9px 2px #ffdd32, 0 0 1px 1px #658fff;
+  }
+
+  &.synced {
+    box-shadow: 0 0 9px 2px #90ff55, 0 0 1px 1px #658fff;
+  }
+}
+div.entry div div.commentDate{
+  font-size: 80%;
+  text-align: right;
+  padding: 0;
+  margin-top: .2em;
+}

@@ -1,0 +1,67 @@
+<t:container 
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
+	xmlns:p="tapestry:parameter">
+	
+	<t:if test="updatemode">
+		Событие ${event.id} : Редактирование
+		<p:else>
+			Новое событие
+		</p:else>
+	</t:if> 
+	<div>
+	<t:eventlink event="theCancel" zone="^"
+			style="position: relative;top: 26px;left: 387px;">${message:cancel-label}</t:eventlink>
+	<t:beaneditform t:id="form" object="event" submitlabel="message:submit-label" 
+	exclude="id, contractId" add="free,clients" zone="^">
+		<p:hostId>
+			<t:label for="hostid"/>
+			<t:select t:id="hostid" model="teacherselect" value="event.hostid" blankOption="ALWAYS" blankLabel="message:blank-label"/>
+		</p:hostId>
+		
+		<p:facilityId>
+			<t:label for="facilityid"/>
+			<t:select t:id="facilityid" model="facilitySelect" value="event.facilityid" t:zone="roomZone" />
+			<!-- blankOption="ALWAYS" blankLabel="message:blank-label" -->
+		</p:facilityId>
+		
+		<p:roomId>
+			<t:zone t:id="roomZone" id="roomZone" style="display:inline;">
+				<t:label for="room"/>
+				<t:select t:id="room" model="roomSelect" value="event.roomid" />
+				<!-- blankOption="ALWAYS" blankLabel="message:blank-label" -->
+			</t:zone>
+		</p:roomId>
+
+		<p:state>
+				<t:label for="state"/>
+				<t:select t:id="state" value="event.state" blankOption="NEVER" />
+		</p:state>
+		
+		<!-- FREE -->
+		<p:free>
+			<t:label for="free"/>
+			<t:checkbox t:id="free" value="freeFromSchool" />${message:freeFromSchool}
+			<t:checkbox t:id="freeFromTeacher"/>${message:freeFromTeacher}
+		</p:free>
+
+		<p:date>
+			<t:label for="date"/>
+			<t:datefield t:id="date" value="event.date" validate="required" />
+		</p:date>
+		
+		
+		
+		<p:typeId>
+			<t:label for="eventTypes"/>
+			<!--t:select t:id="typeId" value="event.typeId" model="typeSelect" blankOption="ALWAYS" blankLabel="message:blank-label"/-->
+			<t:textfield  t:id="eventTypes" value="etype" t:mixins="autocomplete"/>
+		</p:typeId>
+		
+		<!--clients-->
+		<p:clients>
+			<t:label for="clientfield"/>
+			<div t:type="tag/tagselect" style="width: 300px; margin-left: 35%; z-index: 0;" t:id="clientfield" t:value="clientnames"/>
+		</p:clients>
+	</t:beaneditform>
+	</div>
+</t:container>

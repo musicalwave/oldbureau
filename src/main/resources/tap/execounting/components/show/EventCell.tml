@@ -1,0 +1,57 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter">
+
+	<t:if test="element.event">
+		<t:if test="!element.event.contracts">
+			<div class="mini ${addition}">
+
+				<t:if test="displayDate">
+					<h3 class="date">${date}</h3>
+					<h4 class="dow">${dow}</h4>
+				</t:if>
+				<div class="glass" />
+			</div>
+		</t:if>
+
+		<t:if test="element.event.contracts">
+			<t:zone id="cellZone${element.event.id}" t:id="cellZone"
+				style="display:inline-block">
+				<t:unless test="moving">
+					<t:if test="!editing">
+						<t:actionlink zone="cellZone${element.event.id}"
+							t:id="edit" context="element.event.id">
+							<div class="mini ${addition}">
+
+								<t:if test="displayDate">
+									<h3 class="date">${date}</h3>
+									<h4 class="dow">${dow}</h4>
+								</t:if>
+								<div class="glass" />
+							</div>
+						</t:actionlink>
+					</t:if>
+					<t:if test="editing">
+						<t:form>
+							<t:hidden value="element.event.id" t:id="eventid" />
+							<t:select zone="cellZone${element.event.id}" t:id="stateSelect"
+								value="element.event.state" style="height:50px" blankOption="NEVER" />
+						</t:form>
+					</t:if>
+				</t:unless>
+				<t:if test="moving">
+					<t:eventmover t:id="mover" />
+				</t:if>
+			</t:zone>
+		</t:if>
+
+		<p:else>
+			<div class="mini ${addition}">
+				<t:if test="displayDate">
+					<h3 class="date">${date}</h3>
+					<h4 class="dow">${dow}</h4>
+				</t:if>
+				<div class="glass" />
+			</div>
+		</p:else>
+	</t:if>
+</t:container>

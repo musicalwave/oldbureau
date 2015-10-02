@@ -1,0 +1,17 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<t:zone t:id="zona" id="freezr${contractId}" update="show">
+		<t:if test="active">
+			<t:form>
+				<div class="t-beaneditor-row">
+					<t:label for="dateFreeze" />
+					<t:datefield t:id="dateFreeze" />
+				</div>
+				<div class="t-beaneditor-row">
+					<t:label for="dateUnfreeze" />
+					<t:datefield t:id="dateUnfreeze" />
+				</div>
+				<t:submit value="message:submitLabel" />
+			</t:form>
+		</t:if>
+	</t:zone>
+</t:container>

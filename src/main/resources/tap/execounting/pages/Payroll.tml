@@ -1,0 +1,266 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+	<head>
+		<title>
+			Ведомость
+		</title>
+	</head>
+	<body>
+		<div id="margin">
+			<t:if test="filtration">
+				<div id="header">
+					<div id="toptext">
+						АКТ ОКАЗАННЫХ УСЛУГ ЗА
+						<t:output value="dateOne" format="literal: MMMM yyyy" />
+						года
+						<br />
+						к договору № ${field1}
+					</div>
+					<div id="lefttext">г. Москва</div>
+					<div id="righttext">
+						<t:output value="today" format="literal: d MMMM YYYY года" />
+					</div>
+				</div>
+				<div id="bodytextone">
+					Общество с ограниченной ответственностью «Формюзик», именуемое в
+					дальнейшем
+					«Заказчик», в лице генерального директора Маланова Петра
+					Николаевича,
+					действующего на основании Устава, с одной стороны и
+					${field2}
+					в дальнейшем «Исполнитель»,
+					действующая от своего имени, с
+					другой
+					стороны, именуемые вместе
+					«Стороны»,
+					а по отдельности
+					«Сторона»,
+					составили настоящий акт о нижеследующем.
+					<div class="li">
+						1. На основании заключенного между Заказчиком и
+						Исполнителем
+						договора
+						${field3}
+						возмездного оказания услуг ${fromField} года
+						Исполнитель
+						выполнил
+						следующие услуги:
+						<br />
+						(Период выполнения
+						услуг с
+						<t:output value="dateOne" format="literal: dd.MM.y" />
+						по
+						<t:output value="dateTwo" format="literal: dd.MM.y" />
+						)
+					</div>
+				</div>
+				<div id="tablecontainer">
+					<table>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Ученик</th>
+								<th>Предмет</th>
+								<th>Число занятий</th>
+								<th>Стоимость</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr t:type="loop" source="contracts" value="contract">
+								<td class="num">${iteration}</td>
+								<td>${name}</td>
+								<td>${type}</td>
+								<td class="num">${lessonsNumber}</td>
+								<td class="num">${lessonPrice}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="bodytexttwo">
+					<div class="li">
+						2. Общая стоимость оказанных услуг за период с
+						<t:output value="dateOne" format="literal: dd.MM.y" />
+						по
+						<t:output value="dateTwo" format="literal: dd.MM.y" />
+						составляет: ${totalMoney} руб.
+					</div>
+					<div class="li">
+						3. Сумма НДФЛ составляет: ${tax} руб.
+					</div>
+					<div class="li">
+						4. Итого на руки исполнителю: ${taxed} руб.
+					</div>
+					<div class="li">
+						5. В соответствии с пунктом 4.2 договора ${field4}
+						года Заказчик обязуется оплатить услуги в течении 5 (пяти) дней с
+						даты подписания настоящего акта.
+					</div>
+					<div class="li">
+						6. Настоящий акт составлен в двух экземплярах, по
+						одному для каждой из сторон.
+					</div>
+				</div>
+				<div id="footer">
+					<div id="footertop">
+						ПОДПИСИ СТОРОН:
+					</div>
+					<div id="princesig">
+						Заказчик:
+						<br />
+						________ Маланов П.Н.
+						<br />
+						М.П.
+					</div>
+					<div id="agentsig">
+						Исполнитель:
+						<br />
+						________ ${field5}
+					</div>
+				</div>
+			</t:if>
+
+
+			<!-- Filter off -->
+			<t:unless test="filtration">
+				<div id="header">
+					<div id="toptext">${tM.name}</div>
+					<div id="lefttext">
+						Период выполнения услуг с
+						<t:output value="dateOne" format="literal: d.M.y" />
+						по
+						<t:output value="dateTwo" format="literal: d.M.y" />
+					</div>
+				</div>
+				<!-- Standart contracts -->
+				<div id="tablecontainer">
+					Стандарт
+					<table>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Ученик</th>
+								<th>Предмет</th>
+								<th>Число занятий</th>
+								<th>Стоимость</th>
+								<th>Комментарий</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr t:type="loop" source="standartContracts" value="contract">
+								<td class="num">${iteration}</td>
+								<td>${name}</td>
+								<td>${type}</td>
+								<td class="num">${lessonsNumber}</td>
+								<td class="num">${lessonPrice}</td>
+								<td>${comment}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="bodytexttwo">
+					<div class="li">
+						Общая стоимость оказанных услуг: ${totalMoney} руб.
+					</div>
+					<div class="li">
+						Сумма НДФЛ составляет: ${tax} руб.
+					</div>
+					<div class="li">
+						Итого на руки исполнителю: ${taxed} руб.
+					</div>
+				</div>
+				
+				<!-- Trial Contracts -->
+				<div id="tablecontainer2">
+					Пробные
+					<table>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Ученик</th>
+								<th>Предмет</th>
+								<th>Число занятий</th>
+								<th>Стоимость</th>
+								<th>Комментарий</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr t:type="loop" source="trialContracts" value="contract">
+								<td class="num">${trialIteration}</td>
+								<td>${name}</td>
+								<td>${type}</td>
+								<td class="num">${lessonsNumber}</td>
+								<td class="num">${lessonPrice}</td>
+								<td>${comment}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="bodytextthree">
+					Итого: ${trialMoney}
+				</div>
+				
+				<!-- Special Contracts -->
+				<div id="tablecontainer3">
+					Специальные
+					<table>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Ученик</th>
+								<th>Предмет</th>
+								<th>Число занятий</th>
+								<th>Стоимость</th>
+								<th>Комментарий</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr t:type="loop" source="specialContracts" value="contract">
+								<td class="num">${specialIteration}</td>
+								<td>${name}</td>
+								<td>${type}</td>
+								<td class="num">${lessonsNumber}</td>
+								<td class="num">${lessonPrice}</td>
+								<td>${comment}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="bodytextfour">
+					Итого: ${specialMoney}
+				</div>
+				
+				<!-- Free from school Contracts -->
+				<div id="tablecontainer3">
+					Бесплатные от школы
+					<table>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Ученик</th>
+								<th>Предмет</th>
+								<th>Число занятий</th>
+								<th>Стоимость</th>
+								<th>Комментарий</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr t:type="loop" source="freeFromSchoolContracts" value="contract">
+								<td class="num">${freeFromSchoolIteration}</td>
+								<td>${name}</td>
+								<td>${type}</td>
+								<td class="num">${lessonsNumber}</td>
+								<td class="num">${lessonPrice}</td>
+								<td>${comment}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="bodytextfive">
+					Итого: ${freeFromSchoolMoney}
+				</div>
+				<div id="final">
+					Итого выплатить: ${taxed}.&nbsp;&nbsp;&nbsp;Итого вся зарплата: ${totalMoney}. 
+				</div>
+			</t:unless>
+		</div>
+	</body>
+</html>
