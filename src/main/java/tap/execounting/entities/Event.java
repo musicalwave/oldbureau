@@ -4,24 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
 
-import tap.execounting.data.Const;
 import tap.execounting.data.EventState;
 import tap.execounting.entities.interfaces.Dated;
 
@@ -39,7 +27,8 @@ import static tap.execounting.data.EventState.planned;
  */
 @Entity
 @NamedQueries({
-		@NamedQuery(name = Event.ALL, query = "Select se from Event se"),
+		@NamedQuery(name = Event.ALL, query = "Select se from Event se " +
+                                                "inner join fetch se.eventType "),
 		@NamedQuery(name = Event.BY_FACILITY_ID, query = "Select se from Event se where se.facilityId = :facilityId"),
 		@NamedQuery(name = Event.BY_TEACHER_ID, query = "Select se from Event se where se.hostId = :teacherId"),
 		@NamedQuery(name = Event.BY_TEACHER_ID_AND_DATE, query = "Select se from Event se "
@@ -131,7 +120,7 @@ public class Event implements Comparable<Event>, Dated {
 	@Column(name = "type_id", unique = false)
 	private int typeId;
 
-	@OneToOne(optional = false)
+	@ManyToOne
 	@JoinColumn(name = "type_id", nullable = false, updatable = false, insertable = false)
 	private EventType eventType;
 
