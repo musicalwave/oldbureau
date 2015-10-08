@@ -1,12 +1,11 @@
 <html t:type="layout" t:pageTitle="Учителя"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 
-	<ul>
-		<li t:type="loop" source="all" value="unit">
-			<a t:type="actionlink" context="unit" t:id="tLink">
-				${unit.name}
-			</a>
-		</li>
-	</ul>
+    <t:grid t:source="all" row="unit" model="model" rowsPerPage="100">
+		<p:nameCell>
+			<t:pagelink t:page="teacherpage" t:context="unit.id">${unit.name}</t:pagelink>
+		</p:nameCell>
+        <p:empty/>
+    </t:grid>
 
 </html>
