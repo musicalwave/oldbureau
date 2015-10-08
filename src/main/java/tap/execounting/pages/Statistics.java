@@ -15,11 +15,10 @@ import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 
 import org.hibernate.*;
 
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.hibernate.type.IntegerType;
 import tap.execounting.dal.CRUDServiceDAO;
-import tap.execounting.dal.mediators.interfaces.EventMed;
-import tap.execounting.data.EventState;
+
 import tap.execounting.models.selectmodels.FacilitySelectModel;
 import tap.execounting.models.selectmodels.RoomSelectModel;
 import tap.execounting.models.selectmodels.TeacherSelectModel;
@@ -33,6 +32,7 @@ import tap.execounting.entities.Teacher;
         "context:css/datatable.css",
         "context:css/filtertable.css",
         "context:css/stattable.css"})
+
 public class Statistics {
 
     // Code Helpers
@@ -88,45 +88,9 @@ public class Statistics {
     @Persist
     private Integer percent;
 
+    private List<Event> cachedEvents;
 
-    private Criteria getEventListCriteria()
-    {
-        Criteria criteria = session.createCriteria(Event.class);
-
-        if(date1 != null)
-            criteria.add(Restrictions.ge("date", date1));
-
-        if(date2 != null)
-            criteria.add(Restrictions.le("date", date2));
-
-        if(teacherId != null)
-            criteria.add(Restrictions.eq("hostId", teacherId));
-
-        if (state != null)
-        {
-            if(state == 6)
-                criteria.add(Restrictions.disjunction().
-                        add(Restrictions.eq("state", EventState.complete.getCode())).
-                        add(Restrictions.eq("state", EventState.failedByClient.getCode())));
-            else
-                criteria.add(Restrictions.eq("state", state));
-        }
-
-        if(facilityId != null)
-            criteria.add(Restrictions.eq("facilityId", facilityId));
-
-        if(roomId != null)
-            criteria.add(Restrictions.eq("roomId", roomId));
-
-        if(typeId != null)
-            criteria.add(Restrictions.eq("typeId", typeId));
-
-        return criteria;
-    }
-
-
-    private SQLQuery createStatQueryFromSP(String spName){
-
+    private SQLQuery createEventQueryFromSP(String spName){
         String queryString = new StringBuilder().
                 append("CALL ").
                 append(spName).
@@ -142,12 +106,12 @@ public class Statistics {
 
         SQLQuery query = session.createSQLQuery(queryString);
 
-        setStatQueryParams(query);
+        setEventQueryParams(query);
 
         return query;
     }
 
-    private void setStatQueryParams(Query query) {
+    private void setEventQueryParams(Query query) {
         query.setParameter("event_teacher_id", teacherId);
         query.setParameter("event_facility_id", facilityId);
         query.setParameter("event_room_id", roomId);
@@ -158,24 +122,35 @@ public class Statistics {
     }
 
     public List<Event> getEvents() {
+        if(cachedEvents == null) {
+            Query query = createEventQueryFromSP("getEvents").
+                    addScalar("id").
+                    addScalar("teacherName").
+                    addScalar("facilityName").
+                    addScalar("roomName").
+                    addScalar("date").
+                    addScalar("stateName").
+                    addScalar("comment").
+                    addScalar("typeName").
+                    addScalar("price", new IntegerType()).
+                    addScalar("clientNames").
+                    setResultTransformer(new AliasToBeanResultTransformer(Event.class));
+            cachedEvents = query.list();
 
-        Criteria criteria = getEventListCriteria();
-
-        if(criteria != null)
-        {
-            List eventList = criteria.list();
-            if(eventList != null)
-                return eventList;
+            if (cachedEvents != null)
+                return cachedEvents;
+            else
+                return new ArrayList<>();
         }
-
-        return new ArrayList<Event>();
+        else
+            return cachedEvents;
     }
 
     public int getMoney() {
-
-        Query query = createStatQueryFromSP("getMoney").
+        Query query = createEventQueryFromSP("getMoney").
                         addScalar("money", new IntegerType());
         return (int)query.uniqueResult();
+
     }
 
     public int getPercentedMoney() {
@@ -183,8 +158,7 @@ public class Statistics {
     }
 
     public int getShare() {
-
-        Query query = createStatQueryFromSP("getSchoolShare").
+        Query query = createEventQueryFromSP("getSchoolShare").
                 addScalar("money", new IntegerType());
 
         return  (int)query.uniqueResult();
@@ -192,7 +166,7 @@ public class Statistics {
 
 
     public int getTeacherShare() {
-        Query query = createStatQueryFromSP("getTeacherShare").
+        Query query = createEventQueryFromSP("getTeacherShare").
                 addScalar("money", new IntegerType());
 
         return (int)query.uniqueResult();
@@ -212,7 +186,6 @@ public class Statistics {
     }
 
     void onPrepareForRender() {
-
         List<Teacher> teachers = dao.findWithNamedQuery(Teacher.ALL);
         teacherSelect = new TeacherSelectModel(teachers);
 

@@ -130,6 +130,20 @@ public class Event implements Comparable<Event>, Dated {
 	@JoinTable(name = "events_contracts", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
 	private List<Contract> contracts = new ArrayList<>();
 
+    private String teacherName;
+
+    private String facilityName;
+
+    private String roomName;
+
+    private String typeName;
+
+    private int price;
+
+    private String clientNames;
+
+    private String stateName;
+
 	public Event() {
 		date = new Date();
 		state = EventState.complete.getCode();
@@ -422,5 +436,61 @@ public class Event implements Comparable<Event>, Dated {
      */
     public boolean isShiftByTeacher() {
         return commentContains(EventState.movedByTeacher.toString());
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public String getFacilityName() {
+        return facilityName;
+    }
+
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getClientNames() {
+        return clientNames;
+    }
+
+    public void setClientNames(String clientNames) {
+        this.clientNames = clientNames;
+    }
+
+    public String getStateName() {
+        return stateName;
+    }
+
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
     }
 }

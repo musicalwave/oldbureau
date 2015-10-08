@@ -136,6 +136,9 @@
 		<t:submit value="Обновить" />
 	</t:form>
 
+	<br/>
+	<br/>
+
 	<t:zone t:id="resultZone" id="resultZone" update="shake">
 		<t:grids.eventgrid source="events" />
 	</t:zone>
