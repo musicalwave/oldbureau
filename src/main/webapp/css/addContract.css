@@ -56,3 +56,7 @@ ul.sider li {
 	display: table-cell;
 	padding-top: 6px;
 }
+
+div.t-error {
+    max-width: 730px;
+}

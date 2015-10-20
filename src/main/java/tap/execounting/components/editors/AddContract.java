@@ -7,14 +7,14 @@ import java.util.List;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.ValidationException;
-import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectComponent;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.BeanEditForm;
+import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.internal.util.CaptureResultCallback;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
+import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.mediators.interfaces.ContractMed;
 import tap.execounting.dal.mediators.interfaces.EventMed;
@@ -38,9 +38,16 @@ public class AddContract {
 	private TeacherMed tm;
 	@Inject
 	private EventMed em;
+    @Inject
+    private AjaxResponseRenderer renderer;
+    @Inject
+    private Request request;
 
 	@InjectComponent
 	private BeanEditForm editor;
+
+    @Component
+    private Zone editorZone;
 
 	@Inject
 	private ComponentResources resources;
@@ -150,32 +157,40 @@ public class AddContract {
 	}
 
 	void onValidateFromEditor() throws ValidationException {
-		// Teacher check
-		try {
-			teacherId();
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new IllegalArgumentException("Учителя c именем: " + teacher
-					+ ", не найдено.");
-		}
 
-		// Contract/Teacher Schedule compatibility check
-		for (int i = 1; i < 8; i++)
-			if (con.getSchedule().get(i))
-				if (teacher().getScheduleDay(i) == null)
-					throw new IllegalArgumentException(
-							String.format("%s не ведет занятий в %s день недели.", teacher, i));
+        // Teacher check
+        try {
+            teacherId();
+        } catch (Exception e) {
+            editor.recordError(String.format("Учителя с именем %s не найдено.", teacher));
+        }
 
-		// Type check
-		try {
-			typeId();
-		} catch (Exception e) {
-			e.printStackTrace();
-			String errorString = "Типа занятий: " + etype + ", не найдено.";
-			editor.recordError(errorString);
-			throw new IllegalArgumentException(errorString);
-		}
-	}
+        if (!editor.getHasErrors()) {
+            // Contract/Teacher Schedule compatibility check
+            for (int i = 1; i < 8; i++)
+                if (con.getSchedule().get(i))
+                    if (teacher().getScheduleDay(i) == null) {
+                        editor.recordError(String.format("%s не ведет занятий в %s день недели.", teacher, i));
+                    }
+        }
+
+        if (!editor.getHasErrors()) {
+            // Type check
+            try {
+                typeId();
+            } catch (Exception e) {
+                editor.recordError(String.format("Типа занятий: %s не найдено.", etype));
+            }
+        }
+
+        // rerender the editor's zone if any validation error occured
+        // to show these errors at the top of the editor
+        if(request.isXHR() && editor.getHasErrors())
+        {
+            setupRender();
+            renderer.addRender(editorZone);
+        }
+    }
 
 	Object onSuccess() {
 		con.setTypeId(typeId());

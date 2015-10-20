@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.tapestry5.annotations.*;
+import tap.execounting.entities.*;
 import tap.execounting.security.AuthorizationDispatcher;
 import tap.execounting.util.DateUtil;
 
@@ -20,10 +21,7 @@ import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.mediators.interfaces.ContractMed;
 import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.dal.mediators.interfaces.PaymentMed;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.Payment;
+
 
 @Import(stylesheet = "context:css/contract.css")
 public class ShowContract {
@@ -67,6 +65,7 @@ public class ShowContract {
 
 	// Behavior fields
 	@Property
+    @Persist
 	private boolean updateMode;
 	@Property
 	private boolean addingEvent;
@@ -86,13 +85,19 @@ public class ShowContract {
     }
 
 	Object onEdit(int contractId) {
-		// AUTHORIZATION MOUNT POINT EDIT CONTRACT
-		refreshUnit(contractId);
-		if (dispatcher.canEditContracts()) {
-			editor.setup(contract);
-			updateMode = true;
+        // prohibit editing multiple contracts on the same page
+		if(!updateMode) {
+			// AUTHORIZATION MOUNT POINT EDIT CONTRACT
+			refreshUnit(contractId);
+			if (dispatcher.canEditContracts()) {
+				editor.setup(contract);
+				updateMode = true;
+			}
+            return bodyZone.getBody();
 		}
-		return bodyZone.getBody();
+		else {
+            return null;
+        }
 	}
 
 	void onDelete(Contract con) {
@@ -288,12 +293,14 @@ public class ShowContract {
 	}
 
 	Object onExperiment(Contract con) {
-		this.contract = con;
+        refreshUnit(con.getId());
+        updateMode = false;
 		return bodyZone.getBody();
 	}
 
 	Object onCancel(Contract con) {
-		this.contract = con;
+        refreshUnit(con.getId());
+        updateMode = false;
 		return bodyZone.getBody();
 	}
 
@@ -316,7 +323,14 @@ public class ShowContract {
 
     private void refreshUnit(int conId) {
         contract = dao.find(Contract.class, conId);
+        // I still cannot understand Hibernate mappings
+        // and why eager fetch on the teacher and eventType fields
+        // dont load them when I call dao.find...
+        // let's load them manually!
+        contract.setTeacher(dao.find(Teacher.class, contract.getTeacherId()));
+        contract.setEventType(dao.find(EventType.class, contract.getTypeId()));
         contractMed.setUnit(contract);
+		contractId = conId;
     }
 
     // App infra

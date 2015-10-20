@@ -22,7 +22,6 @@ import org.apache.tapestry5.beaneditor.NonVisual;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import tap.execounting.data.ContractState;
-import tap.execounting.data.EventState;
 import tap.execounting.entities.interfaces.Dated;
 import tap.execounting.util.DateUtil;
 
@@ -267,6 +266,10 @@ public class Contract implements Comparable<Contract>, Dated {
             t = null;
         }
         return t;
+    }
+
+    public void setTeacher(Teacher t){
+        this.teacher = t;
     }
 
     public EventType getEventType() {
