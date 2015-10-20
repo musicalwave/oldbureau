@@ -9,7 +9,7 @@
 <t:unless test="updateMode">
 
 <!-- Contract action buttons -->
-<ul class="sider panel">
+<ul class="sc-sider panel">
     <li>
         <t:eventlink t:id="freeze" context="contract" zone="freezer${contract.id}">
             <img src="${lockImg}" title="${freezeLabel}" alt="${freezeLabel}"
