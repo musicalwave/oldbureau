@@ -1,9 +1,9 @@
 <html t:type="layout" t:pageTitle="Учителя"
 	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
 
-    <t:grid t:source="all" row="unit" model="model" rowsPerPage="100">
+    <t:grid class="t-data-grid teachers-data-grid" t:source="workingTeachers" row="teacher" model="model" rowsPerPage="100">
 		<p:nameCell>
-			<t:pagelink t:page="teacherpage" t:context="unit.id">${unit.name}</t:pagelink>
+			<t:pagelink class="teacher-page-link" t:page="teacherpage" t:context="teacher.getId()">${teacher.getName()}</t:pagelink>
 		</p:nameCell>
         <p:empty/>
     </t:grid>

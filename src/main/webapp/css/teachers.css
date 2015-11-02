@@ -1,0 +1,12 @@
+.teachers-data-grid {
+    width: 600px;
+}
+
+.teacher-page-link {
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.teacher-page-link:hover {
+    text-decoration: underline;
+}
