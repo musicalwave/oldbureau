@@ -2,20 +2,7 @@ package tap.execounting.entities;
 
 import java.util.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
@@ -111,6 +98,18 @@ public class Contract implements Comparable<Contract>, Dated {
     @JoinColumn(name = "teacherId", nullable = false, updatable = false, insertable = false)
     private Teacher teacher;
 
+    @Transient
+    private String clientName;
+    @Transient
+    private String info;
+    @Transient
+    private Date lastScheduledEventDate;
+    @Transient
+    private String lastScheduledEventFacility;
+    @Transient
+    private Date clientCommentDate;
+    @Transient
+    private String clientCommentText;
 
     public Contract() {
         setDate(floor(new Date()));
@@ -616,5 +615,53 @@ public class Contract implements Comparable<Contract>, Dated {
 
     public boolean hasFreezeDates() {
         return dateFreeze != null || dateUnfreeze != null;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public Date getLastScheduledEventDate() {
+        return lastScheduledEventDate;
+    }
+
+    public void setLastScheduledEventDate(Date lastScheduledEventDate) {
+        this.lastScheduledEventDate = lastScheduledEventDate;
+    }
+
+    public Date getClientCommentDate() {
+        return clientCommentDate;
+    }
+
+    public void setClientCommentDate(Date clientCommentDate) {
+        this.clientCommentDate = clientCommentDate;
+    }
+
+    public String getClientCommentText() {
+        return clientCommentText;
+    }
+
+    public void setClientCommentText(String clientCommentText) {
+        this.clientCommentText = clientCommentText;
+    }
+
+    public String getLastScheduledEventFacility() {
+        return lastScheduledEventFacility;
+    }
+
+    public void setLastScheduledEventFacility(String lastScheduledEventFacility) {
+        this.lastScheduledEventFacility = lastScheduledEventFacility;
     }
 }

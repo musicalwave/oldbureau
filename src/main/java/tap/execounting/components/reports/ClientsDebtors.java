@@ -7,11 +7,12 @@ import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.BeanModelSource;
-import tap.execounting.dal.mediators.interfaces.ClientMed;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.transform.AliasToBeanResultTransformer;
+import org.hibernate.type.IntegerType;
+import org.hibernate.type.TimestampType;
 import tap.execounting.entities.Client;
-import tap.execounting.entities.Comment;
-
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class ClientsDebtors {
     @Inject
     private BeanModelSource beanModelSource;
     @Inject
-    private ClientMed clientMed;
+    private Session session;
 
     // Screen fields
     @Property
@@ -40,40 +41,25 @@ public class ClientsDebtors {
 
     void setupRender(){
         if (model == null) {
-            model = beanModelSource.createDisplayModel(Client.class,
-                    resources.getMessages());
-            model.add("debt", null);
+            model = beanModelSource.createDisplayModel(
+                        Client.class,
+                        resources.getMessages());
+
+            model.include("name", "managerName", "debt");
             model.add("comment", null);
-            model.exclude(
-                    "balance",
-                    "canceled",
-                    "date",
-                    "firstContractDate",
-                    "firstPlannedPaymentDate",
-                    "id",
-                    "managerId",
-                    "phoneNumber",
-                    "return",
-                    "state",
-                    "studentInfo");
+            model.get("comment").sortable(false);
         }
     }
 
-    public String getComment() {
-        Comment c = clientMed.setUnit(client).getComment();
-        return c == null ? "" : c.getText();
-    }
-
-    public Date getCommentDate() {
-        Comment c = clientMed.setUnit(client).getComment();
-        return c == null ? null : c.getDate();
-    }
     public List<Client> getDebtors() {
-        return clientMed.reset().retainDebtors().sortByName().getGroup(true);
+        Query query = session.createSQLQuery("CALL getDebtors()").
+                addScalar("id").
+                addScalar("name").
+                addScalar("comment").
+                addScalar("commentDate", new TimestampType()).
+                addScalar("managerName").
+                addScalar("debt", new IntegerType()).
+                setResultTransformer(new AliasToBeanResultTransformer(Client.class));
+        return query.list();
     }
-
-    public String getDebt() {
-        return client.getBalance() * (-1) + "";
-    }
-
 }

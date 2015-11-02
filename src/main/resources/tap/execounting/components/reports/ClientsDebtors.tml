@@ -5,18 +5,22 @@
     <t:grid source="debtors" model="model" row="client"
             pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
         <p:nameCell>
-            <t:eventlink event="details" context="client.id">${client.name}
-            </t:eventlink>
+            <t:pagelink t:page="clientpage" context="client.getId()">
+                ${client.getName()}
+            </t:pagelink>
         </p:nameCell>
+        <p:managerNameCell>
+            ${client.getManagerName()}
+        </p:managerNameCell>
         <p:debtCell>
-            ${debt}
+            ${client.getDebt()}
         </p:debtCell>
         <p:commentCell>
             <div class="commentDate">
-                <t:outputraw value="commentDate"/>
+                <t:output value="client.getCommentDate()" format="literal:dd.MM.YYYY HH:mm:ss"/>
             </div>
-            <textarea model-id="${client.id}" class="cool">
-                ${comment}
+            <textarea model-id="${client.getId()}" class="cool">
+                ${client.getComment()}
             </textarea>
         </p:commentCell>
     </t:grid>

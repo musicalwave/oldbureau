@@ -59,6 +59,18 @@ public class Client implements Dated, Deletable {
     @NonVisual
     private boolean deleted;
 
+    @Transient
+    private Date firstPlannedPaymentDatePreload;
+
+    @Transient
+    private String facilityName;
+
+    @Transient
+    private String managerName;
+
+    @Transient
+    private int debt;
+
     public String getComment() {
         return comment;
     }
@@ -116,7 +128,18 @@ public class Client implements Dated, Deletable {
     }
 
     public String getManagerName() {
-        return manager == null ? "" : manager.toString();
+        if(managerName == null) {
+            if(manager == null)
+                return "" ;
+            else
+                manager.toString();
+        }
+
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
     }
 
     public List<Contract> getContracts() {
@@ -129,6 +152,10 @@ public class Client implements Dated, Deletable {
         if (!sortAsc)
             Collections.reverse(list);
         return list;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     /**
@@ -240,6 +267,30 @@ public class Client implements Dated, Deletable {
 
     public void setCanceled(boolean inactive) {
         this.canceled = inactive;
+    }
+
+    public Date getFirstPlannedPaymentDatePreload() {
+        return firstPlannedPaymentDatePreload;
+    }
+
+    public void setFirstPlannedPaymentDatePreload(Date firstPlannedPaymentDatePreload) {
+        this.firstPlannedPaymentDatePreload = firstPlannedPaymentDatePreload;
+    }
+
+    public String getFacilityName() {
+        return facilityName;
+    }
+
+    public void setFacilityName(String facilityName) {
+        this.facilityName = facilityName;
+    }
+
+    public int getDebt() {
+        return debt;
+    }
+
+    public void setDebt(int debt) {
+        this.debt = debt;
     }
 
     static class NameComparator implements Comparator<Client> {

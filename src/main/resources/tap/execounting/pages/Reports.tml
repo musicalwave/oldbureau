@@ -17,9 +17,6 @@
 		<a href="#ending">
 			<li>Договор истекает</li>
 		</a>
-		<a href="#ended">
-			<li>Договор истек</li>
-		</a>
 		<a href="#payment">
 			<li>Скоро платеж</li>
 		</a>
@@ -41,18 +38,10 @@
 	</span>
 
 	<!-- Report tables -->
-	<!-- Contract is ending -->
+	<!-- Contract is expiring (1 event left) -->
 	<div id="ending" style="margin-top:60px;" class="datatable">
 		<t:reports.ContractsExpiring pagerPosition="pagerPosition" rows="rows"/>
 	</div>
-
-	<!-- Clients whose contracts are ended -->
-	<div id="ended" style="margin-top:60px;" class="datatable">
-        <t:progressivedisplay>
-            <t:reports.ClientsStateUndefined pagerPosition="pagerPosition" rows="rows" />
-        </t:progressivedisplay>
-	</div>
-
 
 	<!-- Who should pay in next two weeks -->
 	<div id="payment" style="margin-top:30px;" class="datatable">

@@ -130,19 +130,25 @@ public class Event implements Comparable<Event>, Dated {
 	@JoinTable(name = "events_contracts", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
 	private List<Contract> contracts = new ArrayList<>();
 
+    @Transient
     private String teacherName;
 
+    @Transient
     private String facilityName;
 
+    @Transient
     private String roomName;
 
+    @Transient
     private String typeName;
 
-    private int price;
-
+    @Transient
     private String clientNames;
 
+    @Transient
     private String stateName;
+
+    private int price;
 
 	public Event() {
 		date = new Date();

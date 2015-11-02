@@ -5,34 +5,37 @@
     <t:grid source="source" model="model" row="client"
             pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
         <p:nameCell>
-            <t:eventlink event="details" context="client.id">
-                ${client.name}
+            <t:eventlink event="details" context="client.getId()">
+                ${client.getName()}
             </t:eventlink>
         </p:nameCell>
-        <p:paymentsInfoCell>
-            <t:loop source="client.plannedPayments" value="loopPayment">
-                <t:show.minipayment paymentId="loopPayment.id"/>
+        <p:plannedPaymentsCell>
+            <t:loop source="client.getPlannedPayments()" value="loopPayment">
+                <t:show.minipayment paymentId="loopPayment.getId()"/>
             </t:loop>
-        </p:paymentsInfoCell>
+        </p:plannedPaymentsCell>
+        <p:facilityNameCell>
+            <t:outputraw value="client.getFacilityName()"/>
+        </p:facilityNameCell>
         <p:commentCell>
             <div class="commentDate">
-                <t:outputraw value="commentDate"/>
+                <t:output value="client.getCommentDate()" format="literal:dd.MM.YYYY HH:mm:ss"/>
             </div>
-            <textarea model-id="${client.id}" class="cool">
-                ${comment}
+            <textarea model-id="${client.getId()}" class="cool">
+                ${client.getComment()}
             </textarea>
         </p:commentCell>
     </t:grid>
     <t:block t:id="confirmBlock">
-        <t:eventlink event="delete" context="loopPayment.id"
-                     t:zone="paymentBody${loopPayment.id}">
+        <t:eventlink event="delete" context="loopPayment.getId()"
+                     t:zone="paymentBody${loopPayment.getId()}">
 			<span t:type="any" t:mixins="confirm" t:confirmEnabled="true"
                   t:confirmMessage="message:delete-payment-confirmation-message">удалить</span>
         </t:eventlink>
     </t:block>
     <t:block t:id="authBlock">
-        <t:eventlink event="delete" context="loopPayment.id"
-                     t:zone="paymentBody${loopPayment.id}">
+        <t:eventlink event="delete" context="loopPayment.getId()"
+                     t:zone="paymentBody${loopPayment.getId()}">
 			<span t:type="any" t:mixins="auth"
                   t:authMessage="message:delete-payment-auth-message">удалить</span>
         </t:eventlink>

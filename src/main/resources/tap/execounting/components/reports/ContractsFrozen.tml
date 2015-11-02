@@ -3,17 +3,23 @@
     <h3>Договор заморожен</h3>
     <t:grid source="source" model="model" row="contract"
             pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
-        <p:nameCell>
-            <t:eventlink event="details" context="contract.client.id">${contract.client.name}
-            </t:eventlink>
-        </p:nameCell>
-
+        <p:clientNameCell>
+            <t:pagelink t:page="clientpage" context="contract.getClientId()">
+                ${contract.getClientName()}
+            </t:pagelink>
+        </p:clientNameCell>
+        <p:dateFreezeCell>
+            <t:outputraw value="contract.getDateFreeze()"/>
+        </p:dateFreezeCell>
+        <p:dateUnfreezeCell>
+            <t:outputraw value="contract.getDateUnfreeze()"/>
+        </p:dateUnfreezeCell>
         <p:commentCell>
             <div class="commentDate">
-                <t:outputraw value="commentDate"/>
+                <t:output value="contract.getClientCommentDate()" format="literal:dd.MM.YYYY HH:mm:ss"/>
             </div>
-            <textarea model-id="${contract.client.id}" class="cool">
-                ${comment}
+            <textarea model-id="${contract.getClientId()}" class="cool">
+                ${contract.getClientCommentText()}
             </textarea>
         </p:commentCell>
     </t:grid>

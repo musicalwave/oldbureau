@@ -3,22 +3,26 @@
     <h3>Осталось одно занятие</h3>
     <t:grid source="source" model="model" row="contract"
             pagerPosition="${pagerPosition}" rowsPerPage="${rows}">
-        <p:nameCell>
-            <t:eventlink event="details" context="contract.clientid">${contract.client.name}
-            </t:eventlink>
-        </p:nameCell>
+        <p:clientNameCell>
+            <t:pagelink t:page="clientpage" context="contract.getClientId()">
+                ${contract.getClientName()}
+            </t:pagelink>
+        </p:clientNameCell>
         <p:infoCell>
-            ${info}
+            ${contract.getInfo()}
         </p:infoCell>
-        <p:lastEventCell>
-            <t:output value="lastEventDate" format="literal:dd.MM.YYYY"/>
-        </p:lastEventCell>
+        <p:lastScheduledEventDateCell>
+            <t:output value="contract.getLastScheduledEventDate()" format="literal:dd.MM.YYYY"/>
+        </p:lastScheduledEventDateCell>
+        <p:lastScheduledEventFacilityCell>
+            <t:outputraw value="contract.getLastScheduledEventFacility()"/>
+        </p:lastScheduledEventFacilityCell>
         <p:commentCell>
             <div class="commentDate">
-                <t:outputraw value="commentDate"/>
+                <t:output value="contract.getClientCommentDate()" format="literal:dd.MM.YYYY HH:mm:ss"/>
             </div>
-            <textarea model-id="${contract.client.id}" class="cool">
-                ${comment}
+            <textarea model-id="${contract.getClientId()}" class="cool">
+                ${contract.getClientCommentText()}
             </textarea>
         </p:commentCell>
     </t:grid>

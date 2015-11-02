@@ -7,10 +7,13 @@ import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.corelib.data.GridPagerPosition;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.BeanModelSource;
-import tap.execounting.dal.mediators.interfaces.ClientMed;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.transform.AliasToBeanResultTransformer;
+import org.hibernate.type.TimestampType;
+import tap.execounting.dal.mediators.interfaces.ContractMed;
 import tap.execounting.dal.mediators.interfaces.PaymentMed;
 import tap.execounting.entities.Client;
-import tap.execounting.entities.Comment;
 import tap.execounting.entities.Payment;
 
 import java.util.*;
@@ -21,6 +24,18 @@ import java.util.*;
  * Time: 5:02 PM
  */
 public class ClientsSoonPayments {
+    // App bits
+    @Inject
+    Session session;
+    @Inject
+    PaymentMed med;
+
+    // Tapestry bits
+    @Inject
+    ComponentResources resources;
+    @Inject
+    BeanModelSource beanModelSource;
+
     @Parameter
     @Property
     private GridPagerPosition pagerPosition = GridPagerPosition.BOTH;
@@ -37,40 +52,47 @@ public class ClientsSoonPayments {
     @Property
     private Payment loopPayment;
 
+    @Inject
+    private ContractMed contractMed;
+
     void setupRender() {
         if (model == null) {
-            model = beanModelSource.createDisplayModel(Client.class, resources.getMessages());
-            model.add("paymentsInfo", null);
+            model = beanModelSource.createDisplayModel(
+                        Client.class,
+                        resources.getMessages());
+
+            model.include("name",
+                          "firstPlannedPaymentDatePreload",
+                          "facilityName");
+
+            model.add("plannedPayments", null);
             model.add("comment", null);
-            model.exclude(
-                    "balance",
-                    "canceled",
-                    "date",
-                    "firstContractDate",
-                    "id",
-                    "managerId",
-                    "managerName",
-                    "phoneNumber",
-                    "return",
-                    "state",
-                    "studentInfo");
+
+            model.get("plannedPayments").sortable(false);
+            model.get("comment").sortable(false);
         }
     }
 
     public List<Client> getSource() {
-        return clientMed.reset().retainBySoonPayments(14).getGroup(true);
-    }
+        Query query = session.createSQLQuery("CALL getClientsWithPendingPayments()").
+                addScalar("id").
+                addScalar("name").
+                addScalar("comment").
+                addScalar("commentDate", new TimestampType()).
+                addScalar("firstPlannedPaymentDatePreload").
+                addScalar("facilityName").
+                setResultTransformer(new AliasToBeanResultTransformer(Client.class));
 
-    public String getComment() {
-        Comment c = clientMed.setUnit(client).getComment();
-        return c == null ? "" : c.getText();
-    }
+        List<Client> clientList = query.list();
 
-    public Date getCommentDate() {
-        Comment c = clientMed.setUnit(client).getComment();
-        return c == null ? null : c.getDate();
-    }
+        // load clients' contracts
+        // to get contracts' payments which are
+        // loaded implicitly by Hibernate
+        for(Client client : clientList)
+            client.setContracts(contractMed.reset().retainByClient(client).getGroup());
 
+        return clientList;
+    }
 
     /**
      * Handles event triggered by submitting the edit, in child MiniPayment
@@ -81,16 +103,4 @@ public class ClientsSoonPayments {
         loopPayment = med.getUnitById(paymentId);
         return true;
     }
-
-    // App bits
-    @Inject
-    PaymentMed med;
-    @Inject
-    ClientMed clientMed;
-
-    // Tapestry bits
-    @Inject
-    ComponentResources resources;
-    @Inject
-    BeanModelSource beanModelSource;
 }
