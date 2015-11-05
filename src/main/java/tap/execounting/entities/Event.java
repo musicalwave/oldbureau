@@ -131,21 +131,27 @@ public class Event implements Comparable<Event>, Dated {
 	private List<Contract> contracts = new ArrayList<>();
 
     @Transient
+    @NonVisual
     private String teacherName;
 
     @Transient
+    @NonVisual
     private String facilityName;
 
     @Transient
+    @NonVisual
     private String roomName;
 
     @Transient
+    @NonVisual
     private String typeName;
 
     @Transient
+    @NonVisual
     private String clientNames;
 
     @Transient
+    @NonVisual
     private String stateName;
 
     private int price;
