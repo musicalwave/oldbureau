@@ -55,7 +55,6 @@ public class ClientPage {
 	}
 
 	void onPrepare() {
-		// out.println("Number of contracts: " + client.getContracts().size());
 		client = dao.find(Client.class, client.getId());
 		setup(client);
 	}

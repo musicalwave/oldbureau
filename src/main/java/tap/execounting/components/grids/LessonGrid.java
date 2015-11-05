@@ -82,7 +82,6 @@ public class LessonGrid {
 	}
 
 	public String getHostName() {
-		System.out.println(unit.getId());
 		return dao.find(Teacher.class, unit.getHostId()).getName();
 	}
 

@@ -51,8 +51,7 @@ public class Freezer {
 	}
 	
 	void onSubmit(){
-		System.out.println("\n\nsubmitn\n\n");
-		CaptureResultCallback<Object> callback = new CaptureResultCallback<Object>(); 
+		CaptureResultCallback<Object> callback = new CaptureResultCallback<Object>();
 		resources.triggerEvent("SuccessfullFreeze", new Object[]{new Integer(contractId)}, callback);
 	}
 	void onSuccess(){

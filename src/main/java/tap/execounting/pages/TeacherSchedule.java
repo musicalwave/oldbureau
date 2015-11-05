@@ -248,11 +248,6 @@ public class TeacherSchedule {
 		List<Teacher> teachers = dao.findWithNamedQuery(Teacher.WORKING);
 		teacherSelectModel = new TeacherSelectModel(teachers);
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("datedEvents().size(): " + datedEvents().size());
-		sb.append("\nschedule size: " + datesRange());
-		System.out.println("\n\n" + sb.toString() + "\n\n");
-
 		try {
 			eventsArrayCached = getEventsArray();
 		} catch (Exception e) {
