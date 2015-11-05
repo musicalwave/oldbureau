@@ -249,13 +249,14 @@ public class ContractMediator extends ProtoMediator<Contract> implements Contrac
         if(free_dates.size() != events_to_plan.size())
             throw new IllegalArgumentException("Free dates size not equal to the size of events to plan");
 
-        Teacher host = unit.getTeacher();
+        Teacher host = dao.find(Teacher.class, unit.getTeacherId());
 
         for (int i = 0; i < events_to_plan.size(); i++) {
             Event e = events_to_plan.get(i);
             Date d = free_dates.get(i);
             int school_id = host.getScheduleDay( dayOfWeekRus(d) );
             e.setFacilityId(school_id);
+            e.setHostId(host.getId());
             e.setRoomId( dao.find(Facility.class, school_id).getRooms().get(0).getRoomId() );
             e.setDate(d);
             eventMed.save(e);
