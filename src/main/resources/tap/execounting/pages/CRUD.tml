@@ -20,9 +20,6 @@
 	        <t:if test="selectedTab.equals('Учителя')">
 	        	<t:grids.teachergrid/>
 	        </t:if>
-	        <t:if test="selectedTab.equals('Занятия')">
-	        	<t:grids.lessongrid/>
-	        </t:if>
 	        <t:if test="selectedTab.equals('Предметы')">
 	        	<t:grids.typegrid/>
 	        </t:if>

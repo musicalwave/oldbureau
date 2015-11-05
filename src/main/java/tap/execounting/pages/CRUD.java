@@ -19,7 +19,7 @@ public class CRUD {
 	}
 
 	public String[] getTabs() {
-		return new String[] { "Клиенты", "Учителя", "Занятия", "Предметы",
+		return new String[] { "Клиенты", "Учителя", "Предметы",
 				"Школы" };
 	}
 
