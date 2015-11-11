@@ -231,6 +231,7 @@ public class AddEvent {
 	Object onTheCancel() {
 		CaptureResultCallback<Object> capturer = new CaptureResultCallback<Object>();
 		resources.triggerEvent("InnerUpdate", new Object[] { event }, capturer);
+        resources.triggerEvent("EditorClosed", new Object[] { event }, capturer);
 		return capturer.getResult();
 	}
 
@@ -274,6 +275,7 @@ public class AddEvent {
 
 	private void initSelectModels() {
 		List<Teacher> teachers = dao.findWithNamedQuery(Teacher.WORKING);
+        teachers.add(dao.find(Teacher.class, event.getHostId()));
 		teacherSelect = new TeacherSelectModel(teachers);
 		List<Facility> facilities = dao.findWithNamedQuery(Facility.ACTUAL);
 		facilitySelect = new FacilitySelectModel(facilities);
