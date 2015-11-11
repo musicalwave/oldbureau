@@ -99,22 +99,16 @@ public class Contract implements Comparable<Contract>, Dated {
     private Teacher teacher;
 
     @Transient
-    @NonVisual
     private String clientName;
     @Transient
-    @NonVisual
     private String info;
     @Transient
-    @NonVisual
     private Date lastScheduledEventDate;
     @Transient
-    @NonVisual
     private String lastScheduledEventFacility;
     @Transient
-    @NonVisual
     private Date clientCommentDate;
     @Transient
-    @NonVisual
     private String clientCommentText;
 
     public Contract() {

@@ -99,4 +99,10 @@ public class ShowEvent {
 		}
 		return sb.toString();
 	}
+
+    Object onEditorClosed(Event event) {
+        updateMode = false;
+        this.event = event;
+        return bodyZone.getBody();
+    }
 }

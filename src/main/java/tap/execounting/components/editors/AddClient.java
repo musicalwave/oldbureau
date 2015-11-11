@@ -14,7 +14,6 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 import org.apache.tapestry5.services.BeanModelSource;
-import org.apache.tapestry5.services.SelectModelFactory;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.ChainMap;
 import tap.execounting.entities.Client;
@@ -70,8 +69,18 @@ public class AddClient {
         List<User> users = dao.findWithNamedQuery(User.ALL);
         selectModel = new UserSelectModel(users);
         model = source.createDisplayModel(Client.class, resources.getMessages());
-        model.exclude("id", "return","balance","date","firstPlannedPaymentDate",
-                "firstContractDate","managerName","managerId");
+        model.exclude("id",
+                "return",
+                "balance",
+                "date",
+                "firstPlannedPaymentDate",
+                "firstContractDate",
+                "managerName",
+                "managerId",
+                "firstPlannedPaymentDatePreload",
+                "facilityName",
+                "managerName",
+                "debt");
         if(authenticator.getLoggedUser().isTop())
             model.add("managerId");
     }

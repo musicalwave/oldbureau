@@ -77,8 +77,19 @@ public class ClientGrid {
 		if (model == null) {
 			model = beanModelSource.createDisplayModel(Client.class,
 					componentResources.getMessages());
-			model.exclude("return", "balance", "state", "firstContractDate",
-					"studentInfo", "firstPlannedPaymentDate", "date", "id","managerId");
+			model.exclude("return",
+					"balance",
+					"state",
+					"firstContractDate",
+					"studentInfo",
+					"firstPlannedPaymentDate",
+					"date",
+					"id",
+					"managerId",
+					"firstPlannedPaymentDatePreload",
+					"facilityName",
+					"managerName",
+					"debt");
 			model.add("teachers", null);
 			model.add("Action", null);
 			model.add("deleted");

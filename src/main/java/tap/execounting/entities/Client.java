@@ -60,19 +60,15 @@ public class Client implements Dated, Deletable {
     private boolean deleted;
 
     @Transient
-    @NonVisual
     private Date firstPlannedPaymentDatePreload;
 
     @Transient
-    @NonVisual
     private String facilityName;
 
     @Transient
-    @NonVisual
     private String managerName;
 
     @Transient
-    @NonVisual
     private int debt;
 
     public String getComment() {

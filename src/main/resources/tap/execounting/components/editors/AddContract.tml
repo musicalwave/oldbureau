@@ -13,10 +13,13 @@
                          ${message:cancel-label}
             </t:eventlink>
 
-            <t:beaneditform t:id="editor" object="con"
-                submitlabel="message:submit-label" exclude="id,clientId,freeze,discount"
-                reorder="teacherId,typeId,contractTypeId" add="schedule" zone="^">
-
+            <t:beaneditform t:id="editor"
+                            object="con"
+                            submitlabel="message:submit-label"
+                            exclude="id, clientId, freeze, discount, clientName, info, lastScheduledEventDate, lastScheduledEventFacility, clientCommentDate, clientCommentText"
+                            reorder="teacherId,typeId,contractTypeId"
+                            add="schedule"
+                            zone="^">
                 <t:errors/>
 
                 <p:contractTypeId>
