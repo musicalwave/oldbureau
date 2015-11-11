@@ -1,16 +1,14 @@
 package tap.execounting.entities;
 
-import java.util.*;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import org.apache.tapestry5.beaneditor.NonVisual;
-
 import tap.execounting.data.ContractState;
 import tap.execounting.entities.interfaces.Dated;
 import tap.execounting.entities.interfaces.Deletable;
 import tap.execounting.util.DateUtil;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 
 /**
  * This class does support interface tap.execounting.util.entities.interfaces.Deletable, since it is

@@ -1,5 +1,5 @@
 <html t:type="layout" t:pageTitle="Вход"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 
 	<img src="images/logo.png"
 		style="margin-left: 39%; margin-top: 5%; width: 150px; padding-left: 48px;" />

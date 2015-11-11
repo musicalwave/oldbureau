@@ -1,7 +1,5 @@
 package tap.execounting.services;
 
-import java.util.List;
-
 import org.apache.tapestry5.Field;
 import org.apache.tapestry5.MarkupWriter;
 import org.apache.tapestry5.ValidationException;
@@ -9,9 +7,10 @@ import org.apache.tapestry5.ioc.MessageFormatter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.FormSupport;
 import org.apache.tapestry5.validator.AbstractValidator;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.EventType;
+
+import java.util.List;
 
 public class EventTypeValidator extends AbstractValidator<Void, String> {
 

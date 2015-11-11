@@ -1,22 +1,10 @@
 package tap.execounting.pages;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectComponent;
-import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.PageRenderLinkSource;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
-
 import tap.execounting.components.editors.AddComment;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.ChainMap;
@@ -26,16 +14,13 @@ import tap.execounting.dal.mediators.interfaces.TeacherMed;
 import tap.execounting.data.ContractState;
 import tap.execounting.data.EventRowElement;
 import tap.execounting.data.EventState;
+import tap.execounting.entities.*;
 import tap.execounting.models.selectmodels.FacilitySelectModel;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Comment;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.Facility;
-import tap.execounting.entities.Teacher;
 import tap.execounting.security.AuthorizationDispatcher;
 import tap.execounting.services.ContractByClientNameComparator;
 import tap.execounting.util.DateUtil;
+
+import java.util.*;
 
 @Import(library = { "context:js/updateEffects.js", "context:js/jquery-1.8.3.min.js",
 		"context:js/magicalResizer.js" }, stylesheet = {

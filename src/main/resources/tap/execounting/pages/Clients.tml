@@ -1,5 +1,5 @@
 <html t:type="layout" t:pageTitle="Клиенты"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 
 	<ul class="nav child">
 		<t:pagelink page="clients" class="activeMenuItem">

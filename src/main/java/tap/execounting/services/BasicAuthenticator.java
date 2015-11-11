@@ -4,7 +4,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.Session;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.ChainMap;
 import tap.execounting.entities.User;

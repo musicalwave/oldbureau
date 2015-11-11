@@ -1,6 +1,6 @@
 <html t:type="layout" t:pageTitle="Клиенты : Телефон"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" 
-	xmlns:p="tapestry:parameter">
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+        >
 
     <table>
         <tr><th>Клиент</th><th>Баланс</th></tr>

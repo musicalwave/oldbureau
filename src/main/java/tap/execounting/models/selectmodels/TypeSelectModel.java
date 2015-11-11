@@ -1,16 +1,14 @@
 package tap.execounting.models.selectmodels;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 import org.apache.tapestry5.OptionGroupModel;
 import org.apache.tapestry5.OptionModel;
 import org.apache.tapestry5.internal.OptionModelImpl;
 import org.apache.tapestry5.util.AbstractSelectModel;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.EventType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TypeSelectModel extends AbstractSelectModel {
 

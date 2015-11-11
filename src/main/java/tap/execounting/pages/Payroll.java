@@ -1,18 +1,8 @@
 package tap.execounting.pages;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.mediators.interfaces.ContractMed;
 import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.dal.mediators.interfaces.TeacherMed;
@@ -21,6 +11,11 @@ import tap.execounting.data.EventState;
 import tap.execounting.entities.*;
 import tap.execounting.services.Authenticator;
 import tap.execounting.util.DateUtil;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static tap.execounting.util.DateUtil.ceil;
 import static tap.execounting.util.DateUtil.floor;

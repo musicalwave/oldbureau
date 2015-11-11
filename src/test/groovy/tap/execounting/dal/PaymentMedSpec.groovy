@@ -12,7 +12,7 @@ import tap.execounting.util.DateUtil
 
 import javax.inject.Inject
 
-import static tap.execounting.util.Helper.*
+import static tap.execounting.util.Helper.genPayments
 
 /**
  * User: truth0

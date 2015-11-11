@@ -1,8 +1,8 @@
 package tap.execounting.data;
 
-import java.util.Date;
-
 import tap.execounting.entities.Event;
+
+import java.util.Date;
 
 public class EventRowElement {
 

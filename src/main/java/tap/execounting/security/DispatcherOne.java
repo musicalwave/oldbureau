@@ -1,21 +1,11 @@
 package tap.execounting.security;
 
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.data.Entities;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.EventType;
-import tap.execounting.entities.Facility;
-import tap.execounting.entities.Payment;
-import tap.execounting.entities.Teacher;
-import tap.execounting.entities.User;
+import tap.execounting.entities.*;
 import tap.execounting.services.Authenticator;
 
-import static tap.execounting.security.Operation.create;
-import static tap.execounting.security.Operation.delete;
-import static tap.execounting.security.Operation.update;
+import static tap.execounting.security.Operation.*;
 
 public class DispatcherOne implements AuthorizationDispatcher {
 

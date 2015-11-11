@@ -1,13 +1,9 @@
 package tap.execounting.dal.mediators.interfaces;
 
+import tap.execounting.entities.*;
+
 import java.util.Date;
 import java.util.List;
-
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Comment;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Teacher;
-import tap.execounting.entities.TeacherAddition;
 
 public interface TeacherMed {
 //unit methods

@@ -1,11 +1,5 @@
 package tap.execounting.dal.mediators;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import tap.execounting.dal.ChainMap;
 import tap.execounting.dal.mediators.interfaces.PaymentMed;
 import tap.execounting.entities.Client;
@@ -14,8 +8,9 @@ import tap.execounting.entities.Payment;
 import tap.execounting.util.DateUtil;
 import tap.execounting.util.Trans;
 
+import java.util.*;
+
 import static tap.execounting.util.Trans.clientsToPayments;
-import static tap.execounting.util.Trans.contractsToClients;
 import static tap.execounting.util.Trans.contractsToPayments;
 
 public class PaymentMediator extends ProtoMediator<Payment> implements PaymentMed {

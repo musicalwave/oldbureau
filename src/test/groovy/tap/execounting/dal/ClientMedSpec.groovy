@@ -14,18 +14,12 @@ import tap.execounting.entities.Contract
 import tap.execounting.entities.ContractType
 import tap.execounting.services.AppModule
 
+import static tap.execounting.data.ClientState.*
 import static tap.execounting.entities.ContractType.Standard
 import static tap.execounting.entities.ContractType.Trial
 import static tap.execounting.util.DateUtil.*
-import static tap.execounting.util.Trans.*
-
-import static tap.execounting.data.ClientState.beginner
-import static tap.execounting.data.ClientState.canceled
-import static tap.execounting.data.ClientState.continuer
-import static tap.execounting.data.ClientState.frozen
-import static tap.execounting.data.ClientState.inactive
-import static tap.execounting.data.ClientState.trial
 import static tap.execounting.util.Helper.*
+import static tap.execounting.util.Trans.contractsToClients
 
 @SubModule([TapestryModule, BeanValidatorModule, HibernateCoreModule, HibernateModule, AppModule])
 class ClientMedSpec extends Specification {

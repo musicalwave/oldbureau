@@ -1,5 +1,6 @@
 package tap.execounting.services;
 
+import fr.exanpe.t5.lib.services.ExanpeLibraryModule;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
@@ -10,7 +11,6 @@ import org.apache.tapestry5.services.ComponentRequestFilter;
 import org.apache.tapestry5.services.ComponentRequestHandler;
 import org.apache.tapestry5.services.ValueEncoderFactory;
 import org.apache.tapestry5.validator.ValidatorMacro;
-
 import tap.execounting.dal.HibernateModule;
 import tap.execounting.dal.mediators.MediatorModule;
 import tap.execounting.encoders.TeacherEncoder;
@@ -21,7 +21,6 @@ import tap.execounting.models.beanmodels.ClientModels;
 import tap.execounting.security.AuthenticationFilter;
 import tap.execounting.security.AuthorizationDispatcher;
 import tap.execounting.security.DispatcherOne;
-import fr.exanpe.t5.lib.services.ExanpeLibraryModule;
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry,

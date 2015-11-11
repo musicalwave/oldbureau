@@ -1,9 +1,5 @@
 package tap.execounting.pages;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Persist;
@@ -12,20 +8,23 @@ import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
-
-import org.hibernate.*;
-
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
+import org.hibernate.Session;
 import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.hibernate.type.IntegerType;
 import tap.execounting.dal.CRUDServiceDAO;
-
+import tap.execounting.entities.Event;
+import tap.execounting.entities.Facility;
+import tap.execounting.entities.Teacher;
 import tap.execounting.models.selectmodels.FacilitySelectModel;
 import tap.execounting.models.selectmodels.RoomSelectModel;
 import tap.execounting.models.selectmodels.TeacherSelectModel;
 import tap.execounting.models.selectmodels.TypeTitleSelectModel;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.Facility;
-import tap.execounting.entities.Teacher;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Import(library = "context:/js/updateEffects.js",
         stylesheet = {

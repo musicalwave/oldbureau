@@ -1,22 +1,17 @@
 package tap.execounting.pages;
 
-import java.util.Date;
-import java.util.List;
-
-import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectComponent;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.components.editors.AddContract;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.Client;
 import tap.execounting.entities.Contract;
 import tap.execounting.security.AuthorizationDispatcher;
 import tap.execounting.util.DateUtil;
+
+import java.util.Date;
+import java.util.List;
 
 @Import(stylesheet="context:css/stattable.css")
 public class ClientPage {

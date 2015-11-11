@@ -16,7 +16,7 @@ import tap.execounting.dal.mediators.interfaces.PaymentMed;
 import tap.execounting.entities.Client;
 import tap.execounting.entities.Payment;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * User: truth0

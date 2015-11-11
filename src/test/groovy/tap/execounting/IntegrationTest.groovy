@@ -1,17 +1,7 @@
 package tap.execounting
 
 import geb.spock.GebSpec
-import spock.lang.Ignore
-import tap.execounting.gebpages.ClientPage
-import tap.execounting.gebpages.Clients
-import tap.execounting.gebpages.Home
-import tap.execounting.gebpages.Payroll
-import tap.execounting.gebpages.Reports
-import tap.execounting.gebpages.Settings
-import tap.execounting.gebpages.Signin
-import tap.execounting.gebpages.Statistics
-import tap.execounting.gebpages.TeacherPage
-import tap.execounting.gebpages.Teachers
+import tap.execounting.gebpages.*
 
 class IntegrationTest extends GebSpec{
     def uname = 'Ivan'

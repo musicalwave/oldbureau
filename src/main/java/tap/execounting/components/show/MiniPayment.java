@@ -2,7 +2,10 @@ package tap.execounting.components.show;
 
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Path;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;

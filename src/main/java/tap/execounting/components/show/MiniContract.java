@@ -1,12 +1,11 @@
 package tap.execounting.components.show;
 
-import java.text.SimpleDateFormat;
-
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
-
 import tap.execounting.entities.Contract;
+
+import java.text.SimpleDateFormat;
 
 @Import(stylesheet = "context:css/minicontract.css")
 public class MiniContract {

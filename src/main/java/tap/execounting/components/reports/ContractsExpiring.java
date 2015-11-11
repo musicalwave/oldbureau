@@ -13,6 +13,7 @@ import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.hibernate.type.DateType;
 import org.hibernate.type.TimestampType;
 import tap.execounting.entities.Contract;
+
 import java.util.List;
 
 public class ContractsExpiring {

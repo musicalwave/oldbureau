@@ -13,13 +13,11 @@ import tap.execounting.util.DateUtil
 
 import static tap.execounting.data.ContractState.active
 import static tap.execounting.data.ContractState.canceled
-import static tap.execounting.data.ContractState.complete
-import static tap.execounting.data.EventState.*
-import static tap.execounting.data.EventState.complete
+import static tap.execounting.data.EventState.planned
 import static tap.execounting.entities.ContractType.Trial
 import static tap.execounting.entities.Event.FREE_FROM_SCHOOL
 import static tap.execounting.entities.Event.FREE_FROM_TEACHER
-import static tap.execounting.util.Helper.*
+import static tap.execounting.util.Helper.genContract
 
 /**
  * User: truth0

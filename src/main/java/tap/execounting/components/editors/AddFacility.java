@@ -4,7 +4,6 @@ package tap.execounting.components.editors;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.Facility;
 

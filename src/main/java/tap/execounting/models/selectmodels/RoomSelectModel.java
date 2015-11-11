@@ -1,18 +1,16 @@
 package tap.execounting.models.selectmodels;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-
-
 import org.apache.tapestry5.OptionGroupModel;
 import org.apache.tapestry5.OptionModel;
 import org.apache.tapestry5.internal.OptionModelImpl;
 import org.apache.tapestry5.util.AbstractSelectModel;
-
 import tap.execounting.entities.Facility;
 import tap.execounting.entities.Room;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class RoomSelectModel extends AbstractSelectModel {
 

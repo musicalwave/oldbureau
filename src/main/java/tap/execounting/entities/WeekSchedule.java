@@ -2,11 +2,7 @@ package tap.execounting.entities;
 
 import org.apache.tapestry5.beaneditor.NonVisual;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Database table for that table should cleaned sometimes.

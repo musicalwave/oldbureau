@@ -1,7 +1,5 @@
 package tap.execounting.pages;
 
-import tap.execounting.services.Authenticator;
-
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -9,9 +7,9 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.User;
+import tap.execounting.services.Authenticator;
 
 @Import(stylesheet="context:css/signin.css")
 public class Settings {

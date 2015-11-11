@@ -1,16 +1,10 @@
 package tap.execounting.dal.mediators.interfaces;
 
+import tap.execounting.data.ContractState;
+import tap.execounting.entities.*;
+
 import java.util.Date;
 import java.util.List;
-
-import tap.execounting.data.ContractState;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.ContractType;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.EventType;
-import tap.execounting.entities.Payment;
-import tap.execounting.entities.Teacher;
 
 public interface ContractMed {
 	// unit methods

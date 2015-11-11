@@ -1,6 +1,6 @@
 <html t:type="layout" t:pageTitle="Учителя : ${tMed.name}"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter"
-	xmlns:ex="tapestry-library:exanpe">
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	  xmlns:ex="tapestry-library:exanpe">
 
 	<h3>${tMed.name}</h3>
 	<div id="payrollController">

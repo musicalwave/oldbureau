@@ -1,12 +1,7 @@
 package tap.execounting.dal.mediators;
 
 import org.apache.tapestry5.ioc.ServiceBinder;
-
-import tap.execounting.dal.mediators.interfaces.ClientMed;
-import tap.execounting.dal.mediators.interfaces.ContractMed;
-import tap.execounting.dal.mediators.interfaces.EventMed;
-import tap.execounting.dal.mediators.interfaces.PaymentMed;
-import tap.execounting.dal.mediators.interfaces.TeacherMed;
+import tap.execounting.dal.mediators.interfaces.*;
 
 
 

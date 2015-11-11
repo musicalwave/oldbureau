@@ -1,13 +1,13 @@
 package tap.execounting.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.tapestry5.OptionGroupModel;
 import org.apache.tapestry5.OptionModel;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.SelectModelVisitor;
 import org.apache.tapestry5.internal.OptionModelImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StringSelectModel implements SelectModel {
 	private final List<String> strings;

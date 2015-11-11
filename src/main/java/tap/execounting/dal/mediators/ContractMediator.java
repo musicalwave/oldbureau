@@ -1,15 +1,5 @@
 package tap.execounting.dal.mediators;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.LazyInitializationException;
 import tap.execounting.dal.ChainMap;
@@ -24,10 +14,12 @@ import tap.execounting.entities.*;
 import tap.execounting.services.ContractByClientNameComparator;
 import tap.execounting.util.DateUtil;
 
-import static java.util.Calendar.DAY_OF_WEEK;
-import static tap.execounting.util.DateUtil.*;
-import static tap.execounting.util.Trans.*;
+import java.util.*;
+import java.util.Map.Entry;
+
 import static tap.execounting.data.ContractState.*;
+import static tap.execounting.util.DateUtil.*;
+import static tap.execounting.util.Trans.contractsToClients;
 
 public class ContractMediator extends ProtoMediator<Contract> implements ContractMed {
 

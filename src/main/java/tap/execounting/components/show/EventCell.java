@@ -1,10 +1,5 @@
 package tap.execounting.components.show;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Parameter;
@@ -12,13 +7,17 @@ import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.components.EventMover;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.data.EventRowElement;
 import tap.execounting.data.EventState;
 import tap.execounting.entities.Event;
 import tap.execounting.security.AuthorizationDispatcher;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class EventCell {
 	@Property

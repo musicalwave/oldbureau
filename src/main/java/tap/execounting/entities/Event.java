@@ -1,17 +1,15 @@
 package tap.execounting.entities;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import org.apache.tapestry5.beaneditor.NonVisual;
+import org.apache.tapestry5.beaneditor.Validate;
+import tap.execounting.data.EventState;
+import tap.execounting.entities.interfaces.Dated;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import org.apache.tapestry5.beaneditor.NonVisual;
-import org.apache.tapestry5.beaneditor.Validate;
-
-import tap.execounting.data.EventState;
-import tap.execounting.entities.interfaces.Dated;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static tap.execounting.data.Const.freeFromSchool;
 import static tap.execounting.data.Const.freeFromTeacher;

@@ -1,7 +1,5 @@
 package tap.execounting.components;
 
-import java.util.Date;
-
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Property;
@@ -9,9 +7,10 @@ import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.internal.util.CaptureResultCallback;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
-
 import tap.execounting.dal.mediators.interfaces.ContractMed;
 import tap.execounting.util.DateUtil;
+
+import java.util.Date;
 
 public class Freezer {
 	// Bits

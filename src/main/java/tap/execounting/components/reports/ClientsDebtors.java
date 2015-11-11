@@ -13,6 +13,7 @@ import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.hibernate.type.IntegerType;
 import org.hibernate.type.TimestampType;
 import tap.execounting.entities.Client;
+
 import java.util.List;
 
 /**

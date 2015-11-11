@@ -1,29 +1,15 @@
 package tap.execounting.dal.mediators;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-
 import org.hibernate.LazyInitializationException;
 import tap.execounting.dal.ChainMap;
 import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.data.EventState;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.EventType;
-import tap.execounting.entities.EventTypeAddition;
-import tap.execounting.entities.Facility;
-import tap.execounting.entities.Room;
-import tap.execounting.entities.Teacher;
-import tap.execounting.entities.WeekSchedule;
+import tap.execounting.entities.*;
 import tap.execounting.util.DateUtil;
+
+import java.util.*;
+import java.util.Map.Entry;
+
 import static tap.execounting.util.DateUtil.floor;
 
 public class EventMediator extends ProtoMediator<Event> implements EventMed {

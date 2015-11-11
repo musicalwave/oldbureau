@@ -1,15 +1,14 @@
 package tap.execounting.components.editors;
 
-import java.util.Date;
-
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.Comment;
 import tap.execounting.services.Authenticator;
+
+import java.util.Date;
 
 public class AddComment {
 

@@ -1,15 +1,14 @@
 package tap.execounting.components;
 
-import java.util.Date;
-
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.data.EventState;
 import tap.execounting.entities.Event;
+
+import java.util.Date;
 
 public class EventMover {
 

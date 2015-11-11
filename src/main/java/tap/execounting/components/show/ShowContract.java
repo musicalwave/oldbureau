@@ -1,26 +1,24 @@
 package tap.execounting.components.show;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
-import org.apache.tapestry5.annotations.*;
-import tap.execounting.entities.*;
-import tap.execounting.security.AuthorizationDispatcher;
-import tap.execounting.util.DateUtil;
-
 import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
-
 import tap.execounting.components.editors.AddContract;
 import tap.execounting.components.editors.AddEvent;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.mediators.interfaces.ContractMed;
 import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.dal.mediators.interfaces.PaymentMed;
+import tap.execounting.entities.*;
+import tap.execounting.security.AuthorizationDispatcher;
+import tap.execounting.util.DateUtil;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 
 @Import(stylesheet = "context:css/contract.css")

@@ -10,9 +10,7 @@ import tap.execounting.dal.HibernateCrudServiceDAO
 import tap.execounting.dal.HibernateModule
 import tap.execounting.services.AppModule
 
-import static tap.execounting.entities.Event.FREE_FROM_SCHOOL
-import static tap.execounting.entities.Event.FREE_FROM_TEACHER
-import static tap.execounting.entities.Event.NOT_FREE
+import static tap.execounting.entities.Event.*
 import static tap.execounting.util.Helper.genSessionFactory
 
 /**

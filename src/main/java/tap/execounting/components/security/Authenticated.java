@@ -1,9 +1,8 @@
 package tap.execounting.components.security;
 
-import tap.execounting.services.Authenticator;
-
 import org.apache.tapestry5.corelib.base.AbstractConditional;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import tap.execounting.services.Authenticator;
 
 
 /**

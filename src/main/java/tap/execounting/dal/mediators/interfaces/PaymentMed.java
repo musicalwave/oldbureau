@@ -1,11 +1,11 @@
 package tap.execounting.dal.mediators.interfaces;
 
-import java.util.Date;
-import java.util.List;
-
 import tap.execounting.entities.Client;
 import tap.execounting.entities.Contract;
 import tap.execounting.entities.Payment;
+
+import java.util.Date;
+import java.util.List;
 
 public interface PaymentMed {
 //unit methods

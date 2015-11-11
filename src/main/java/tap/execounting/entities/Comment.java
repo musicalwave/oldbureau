@@ -1,16 +1,9 @@
 package tap.execounting.entities;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
 import org.apache.tapestry5.beaneditor.NonVisual;
+
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * This class does not support interface tap.execounting.util.entities.interfaces.Deletable, since

@@ -1,17 +1,10 @@
 package tap.execounting.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import org.apache.tapestry5.beaneditor.NonVisual;
+
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
-import org.apache.tapestry5.beaneditor.NonVisual;
 
 @Entity
 @Table(name = "event_type_additions")

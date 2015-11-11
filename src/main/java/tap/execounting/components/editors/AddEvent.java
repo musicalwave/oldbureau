@@ -1,10 +1,5 @@
 package tap.execounting.components.editors;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.annotations.InjectComponent;
@@ -13,19 +8,18 @@ import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.internal.util.CaptureResultCallback;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.data.StringSelectModel;
+import tap.execounting.entities.*;
 import tap.execounting.models.selectmodels.FacilitySelectModel;
 import tap.execounting.models.selectmodels.RoomSelectModel;
 import tap.execounting.models.selectmodels.TeacherSelectModel;
 import tap.execounting.models.selectmodels.TypeSelectModel;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.EventType;
-import tap.execounting.entities.Facility;
-import tap.execounting.entities.Teacher;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class AddEvent {
 

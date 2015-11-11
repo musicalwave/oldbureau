@@ -1,12 +1,11 @@
 package tap.execounting.components.show;
 
-import java.util.List;
-
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
-
 import tap.execounting.data.EventRowElement;
+
+import java.util.List;
 
 @Import(stylesheet="context:css/eventrow.css")
 public class EventRow {

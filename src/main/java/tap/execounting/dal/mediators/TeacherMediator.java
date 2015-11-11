@@ -1,11 +1,6 @@
 package tap.execounting.dal.mediators;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.ChainMap;
 import tap.execounting.dal.mediators.interfaces.ClientMed;
 import tap.execounting.dal.mediators.interfaces.ContractMed;
@@ -13,12 +8,11 @@ import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.dal.mediators.interfaces.TeacherMed;
 import tap.execounting.data.ContractState;
 import tap.execounting.data.EventState;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Comment;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Facility;
-import tap.execounting.entities.Teacher;
-import tap.execounting.entities.TeacherAddition;
+import tap.execounting.entities.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class TeacherMediator extends ProtoMediator<Teacher> implements TeacherMed {
 

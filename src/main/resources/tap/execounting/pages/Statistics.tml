@@ -1,5 +1,5 @@
 <html t:type="layout" t:pageTitle="Занятия"
-	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
 	<!-- Most of the page content, including <head>, <body>, etc. tags, comes 
 		from Layout.tml -->
 

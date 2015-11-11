@@ -1,16 +1,14 @@
 package tap.execounting.entities;
 
-import java.util.*;
-
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-
 import org.apache.tapestry5.beaneditor.NonVisual;
-
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import tap.execounting.data.ContractState;
 import tap.execounting.entities.interfaces.Dated;
 import tap.execounting.util.DateUtil;
+
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import java.util.*;
 
 import static java.util.Calendar.DAY_OF_WEEK;
 import static javax.persistence.FetchType.EAGER;

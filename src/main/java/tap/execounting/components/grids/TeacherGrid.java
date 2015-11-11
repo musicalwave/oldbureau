@@ -1,9 +1,5 @@
 package tap.execounting.components.grids;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.Property;
@@ -11,13 +7,16 @@ import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.BeanModelSource;
-
 import tap.execounting.components.editors.AddTeacher;
 import tap.execounting.components.show.SmartIcon;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.Facility;
 import tap.execounting.entities.Teacher;
 import tap.execounting.security.AuthorizationDispatcher;
+
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class TeacherGrid {
 	@Inject

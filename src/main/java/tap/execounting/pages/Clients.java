@@ -1,8 +1,5 @@
 package tap.execounting.pages;
 
-import java.util.Date;
-import java.util.List;
-
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Import;
@@ -13,24 +10,23 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.SelectModelFactory;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.mediators.interfaces.ClientMed;
 import tap.execounting.dal.mediators.interfaces.ContractMed;
 import tap.execounting.dal.mediators.interfaces.PaymentMed;
 import tap.execounting.data.ClientState;
 import tap.execounting.data.ContractState;
-import tap.execounting.models.selectmodels.ContractTypeIdSelectModel;
-import tap.execounting.models.selectmodels.UserSelectModel;
-import tap.execounting.entities.User;
 import tap.execounting.entities.Client;
 import tap.execounting.entities.Contract;
 import tap.execounting.entities.ContractType;
-import tap.execounting.util.DateUtil;
+import tap.execounting.entities.User;
+import tap.execounting.models.selectmodels.ContractTypeIdSelectModel;
+import tap.execounting.models.selectmodels.UserSelectModel;
 
-import static tap.execounting.util.DateUtil.ceil;
-import static tap.execounting.util.DateUtil.fromNowPlusDays;
-import static tap.execounting.util.DateUtil.now;
+import java.util.Date;
+import java.util.List;
+
+import static tap.execounting.util.DateUtil.*;
 
 @Import(stylesheet = "context:css/filtertable.css")
 public class Clients {

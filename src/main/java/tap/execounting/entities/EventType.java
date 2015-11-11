@@ -1,17 +1,10 @@
 package tap.execounting.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
 import org.apache.tapestry5.beaneditor.NonVisual;
-
 import tap.execounting.data.Const;
 import tap.execounting.entities.interfaces.Deletable;
+
+import javax.persistence.*;
 
 @Entity
 @NamedQueries({

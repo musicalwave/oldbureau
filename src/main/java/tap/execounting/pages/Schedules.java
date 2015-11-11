@@ -1,20 +1,15 @@
 package tap.execounting.pages;
 
-import java.util.List;
-
-import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.entities.Event;
 import tap.execounting.entities.Facility;
 import tap.execounting.entities.Teacher;
+
+import java.util.List;
 
 @Import(stylesheet = "context:css/datatable.css")
 public class Schedules {

@@ -2,24 +2,13 @@ package tap.execounting.util
 
 import org.hibernate.SessionFactory
 import org.hibernate.cfg.Configuration
-import tap.execounting.entities.Client
-import tap.execounting.entities.Contract
-import tap.execounting.entities.ContractType
-import tap.execounting.entities.Event
-import tap.execounting.entities.EventType
-import tap.execounting.entities.Facility
-import tap.execounting.entities.Payment
-import tap.execounting.entities.Room
-import tap.execounting.entities.Teacher
-import tap.execounting.entities.TeacherAddition
-import tap.execounting.entities.User
-import tap.execounting.entities.WeekSchedule
+import tap.execounting.entities.*
 
-import static tap.execounting.entities.ContractType.Standard
 import static tap.execounting.data.EventState.complete
 import static tap.execounting.data.EventState.planned
+import static tap.execounting.entities.ContractType.Standard
 import static tap.execounting.entities.ContractType.Trial
-import static tap.execounting.util.DateUtil.*
+import static tap.execounting.util.DateUtil.fromNowPlusDays
 
 /**
  * User: truth0

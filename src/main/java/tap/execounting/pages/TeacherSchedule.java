@@ -1,26 +1,20 @@
 package tap.execounting.pages;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Persist;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.annotations.SetupRender;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.components.editors.AddEvent;
 import tap.execounting.dal.CRUDServiceDAO;
-import tap.execounting.models.selectmodels.TeacherSelectModel;
 import tap.execounting.entities.Event;
 import tap.execounting.entities.Facility;
 import tap.execounting.entities.Teacher;
+import tap.execounting.models.selectmodels.TeacherSelectModel;
 import tap.execounting.security.AuthorizationDispatcher;
-import tap.execounting.util.DateUtil;
+
+import java.util.*;
 
 import static tap.execounting.util.DateUtil.*;
 

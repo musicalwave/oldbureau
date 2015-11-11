@@ -9,7 +9,7 @@ import tap.execounting.dal.mediators.EventMediator
 import tap.execounting.dal.mediators.interfaces.EventMed
 import tap.execounting.services.AppModule
 
-import static tap.execounting.util.Helper.*
+import static tap.execounting.util.Helper.genSessionFactory
 
 /**
  * User: truth0

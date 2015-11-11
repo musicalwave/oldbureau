@@ -1,21 +1,16 @@
 package tap.execounting.pages;
 
-import java.util.Date;
-import java.util.List;
-
-import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Persist;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.RequestParameter;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.ChainMap;
 import tap.execounting.dal.mediators.interfaces.ClientMed;
 import tap.execounting.entities.Comment;
+
+import java.util.Date;
+import java.util.List;
 
 @Import(
         library = {

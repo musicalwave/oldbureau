@@ -4,9 +4,9 @@ import org.apache.commons.lang3.time.DateUtils
 import spock.lang.Specification
 import tap.execounting.entities.Payment
 
-import static java.util.Calendar.*
+import static java.util.Calendar.HOUR_OF_DAY
+import static java.util.Calendar.SECOND
 import static tap.execounting.util.DateUtil.*
-import static tap.execounting.util.DateUtil.retainByDatesEntry
 
 /**
  * User: truth0

@@ -1,15 +1,14 @@
 package tap.execounting.pages;
 
-import java.util.List;
-
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.annotations.Import;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import org.apache.tapestry5.services.BeanModelSource;
 import tap.execounting.dal.mediators.interfaces.TeacherMed;
 import tap.execounting.entities.Teacher;
+
+import java.util.List;
 
 @Import(stylesheet = {"context:css/datatable.css",
                       "context:css/teachers.css"})

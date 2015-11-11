@@ -1,9 +1,8 @@
 package tap.execounting.pages;
 
+import org.apache.tapestry5.ioc.annotations.Inject;
 import tap.execounting.annotations.AnonymousAccess;
 import tap.execounting.services.Authenticator;
-
-import org.apache.tapestry5.ioc.annotations.Inject;
 
 
 @AnonymousAccess

@@ -1,7 +1,5 @@
 package tap.execounting.components.editors;
 
-import java.util.List;
-
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.SelectModel;
 import org.apache.tapestry5.ValidationException;
@@ -12,7 +10,6 @@ import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.corelib.components.Zone;
 import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import org.apache.tapestry5.services.BeanModelSource;
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.ChainMap;
@@ -21,6 +18,8 @@ import tap.execounting.entities.User;
 import tap.execounting.models.selectmodels.UserSelectModel;
 import tap.execounting.pages.CRUD;
 import tap.execounting.services.Authenticator;
+
+import java.util.List;
 
 /**
  * @author truth0

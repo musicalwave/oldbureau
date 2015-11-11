@@ -1,30 +1,23 @@
 package tap.execounting.components.grids;
 
-import java.util.Date;
-import java.util.List;
-
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.annotations.Import;
-import org.apache.tapestry5.annotations.InjectPage;
-import org.apache.tapestry5.annotations.Parameter;
-import org.apache.tapestry5.annotations.Property;
-import org.apache.tapestry5.annotations.RequestParameter;
+import org.apache.tapestry5.annotations.*;
 import org.apache.tapestry5.beaneditor.BeanModel;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
 import org.apache.tapestry5.services.BeanModelSource;
-
 import tap.execounting.dal.CRUDServiceDAO;
 import tap.execounting.dal.ChainMap;
 import tap.execounting.dal.mediators.interfaces.ClientMed;
 import tap.execounting.entities.Client;
 import tap.execounting.entities.Comment;
 import tap.execounting.entities.Contract;
-import tap.execounting.entities.ContractType;
-import tap.execounting.entities.Teacher;
 import tap.execounting.pages.ClientPage;
 import tap.execounting.util.DateUtil;
+
+import java.util.Date;
+import java.util.List;
 
 import static tap.execounting.entities.ContractType.Standard;
 

@@ -7,7 +7,6 @@ import org.apache.tapestry5.annotations.Log;
 import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.entities.User;
 import tap.execounting.pages.Index;
 import tap.execounting.services.Authenticator;

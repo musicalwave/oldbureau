@@ -1,6 +1,6 @@
 <html t:type="layout" pageTitle="Расписания"
-      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
-      xmlns:p="tapestry:parameter">
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+		>
       
         <h3 t:type="zone" t:id="datelabelZone" id="datelabelZone" style="max-width:400px;">
         	Расписание школы : ${facility.name}<br/><br/>

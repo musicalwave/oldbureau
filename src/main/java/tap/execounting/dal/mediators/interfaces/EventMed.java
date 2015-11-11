@@ -1,17 +1,10 @@
 package tap.execounting.dal.mediators.interfaces;
 
+import tap.execounting.data.EventState;
+import tap.execounting.entities.*;
+
 import java.util.Date;
 import java.util.List;
-
-import tap.execounting.data.EventState;
-import tap.execounting.entities.Client;
-import tap.execounting.entities.Contract;
-import tap.execounting.entities.Event;
-import tap.execounting.entities.EventType;
-import tap.execounting.entities.EventTypeAddition;
-import tap.execounting.entities.Facility;
-import tap.execounting.entities.Room;
-import tap.execounting.entities.Teacher;
 
 public interface EventMed {
 	// unit methods:

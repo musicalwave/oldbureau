@@ -1,24 +1,26 @@
 package tap.execounting.dal.mediators;
 
-import java.util.*;
-import java.util.Map.Entry;
-
 import org.apache.tapestry5.ioc.annotations.Inject;
-
 import tap.execounting.dal.ChainMap;
-import tap.execounting.dal.mediators.interfaces.*;
+import tap.execounting.dal.mediators.interfaces.ClientMed;
+import tap.execounting.dal.mediators.interfaces.ContractMed;
+import tap.execounting.dal.mediators.interfaces.EventMed;
+import tap.execounting.dal.mediators.interfaces.PaymentMed;
 import tap.execounting.data.ClientState;
 import tap.execounting.data.ContractState;
 import tap.execounting.entities.*;
 import tap.execounting.security.AuthorizationDispatcher;
 import tap.execounting.services.Authenticator;
-import tap.execounting.util.DateUtil;
 
-import static tap.execounting.util.DateUtil.fromNowPlusDays;
-import static tap.execounting.util.DateUtil.retainByDatesEntry;
-import static tap.execounting.util.Trans.*;
+import java.util.*;
+import java.util.Map.Entry;
+
 import static tap.execounting.data.ContractState.active;
 import static tap.execounting.data.ContractState.frozen;
+import static tap.execounting.util.DateUtil.fromNowPlusDays;
+import static tap.execounting.util.DateUtil.retainByDatesEntry;
+import static tap.execounting.util.Trans.clientsToContracts;
+import static tap.execounting.util.Trans.contractsToClients;
 
 public class ClientMediator extends ProtoMediator<Client> implements ClientMed {
     @Inject
