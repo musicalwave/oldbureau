@@ -297,12 +297,12 @@ public class Contract implements Comparable<Contract>, Dated {
      * @return full contract price
      */
     public int getMoney() {
-        int lessonCost = getEventType().getPrice();
-        int lessons = getEventsNumber();
-        int total = lessonCost * lessons;
-        total -= discount;
-        total += getGiftMoney();
-        return total;
+        int totalCost = 0;
+        for(Event event: events)
+            totalCost += event.getPrice();
+        totalCost -= discount;
+        totalCost += getGiftMoney();
+        return totalCost;
     }
 
     // Lessons Event etc. methods
@@ -549,8 +549,7 @@ public class Contract implements Comparable<Contract>, Dated {
     public int getEventsShiftedByClient() {
         int count = 0;
         for (Event e : getEvents())
-            if (e.isShiftByClient())
-                count++;
+            count += e.getShiftCount();
         return count;
     }
 
