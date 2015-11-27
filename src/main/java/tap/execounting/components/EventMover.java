@@ -6,6 +6,7 @@ import org.apache.tapestry5.ioc.Messages;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.data.EventState;
+import tap.execounting.data.EventTransferType;
 import tap.execounting.entities.Event;
 
 import java.util.Date;
@@ -23,14 +24,20 @@ public class EventMover {
 	@Property
 	private Date newDate;
 	@Property
-	// 0 - for schedule transfer
-	// 1 - for dated transfer
-	private int transferType;
+	private EventTransferType transferType;
 	@Inject
 	private Messages messages;
 
 	public boolean getOnDateTest() {
-		return transferType == 1;
+		return transferType == EventTransferType.EXACT_DATE;
+	}
+
+	public EventTransferType getScheduledTransferValue(){
+		return EventTransferType.SCHEDULED;
+	}
+
+    public EventTransferType getExactDateTransferValue(){
+		return EventTransferType.EXACT_DATE;
 	}
 
 	public void setup(Event e, EventState newState) {

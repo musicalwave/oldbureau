@@ -5,11 +5,11 @@
 	<t:form>
 		<t:radiogroup t:id="transferType">
 			<div>
-				<t:radio t:id="schedule" value="literal:0"/>
+				<t:radio t:id="schedule" value="scheduledTransferValue"/>
 				<t:label for="schedule" />
 			</div>
 			<div>
-				<t:radio t:id="ondate" value="literal:1"
+				<t:radio t:id="ondate" value="exactDateTransferValue"
 					t:mixins="triggerfragment" fragment="datepart" />
 				<t:label for="ondate" />
 			</div>

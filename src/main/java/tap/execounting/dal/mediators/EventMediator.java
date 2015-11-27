@@ -4,6 +4,7 @@ import org.hibernate.LazyInitializationException;
 import tap.execounting.dal.ChainMap;
 import tap.execounting.dal.mediators.interfaces.EventMed;
 import tap.execounting.data.EventState;
+import tap.execounting.data.EventTransferType;
 import tap.execounting.entities.*;
 import tap.execounting.util.DateUtil;
 
@@ -122,10 +123,9 @@ public class EventMediator extends ProtoMediator<Event> implements EventMed {
             dao.create(event);
     }
 
-    public void move(EventState newState, Date newDate, int transferType)
+    public void move(EventState newState, Date newDate, EventTransferType transferType)
             throws IllegalAccessException {
-        // Scheduled transfer type = 0
-        if (transferType == 0) {
+        if (transferType == EventTransferType.SCHEDULED) {
             // TODO group scheduled transfers
             // 1. Check that event has only one contract on it. Group events are
             // not for scheduled transfer yet.

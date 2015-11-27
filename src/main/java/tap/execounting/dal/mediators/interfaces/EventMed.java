@@ -1,6 +1,7 @@
 package tap.execounting.dal.mediators.interfaces;
 
 import tap.execounting.data.EventState;
+import tap.execounting.data.EventTransferType;
 import tap.execounting.entities.*;
 
 import java.util.Date;
@@ -57,7 +58,7 @@ public interface EventMed {
 	
 	// Moves event on dates
 	public void move(EventState newState, Date newDate,
-			int transferType) throws IllegalAccessException;
+			EventTransferType transferType) throws IllegalAccessException;
 
 	// group methods:
 	// group
