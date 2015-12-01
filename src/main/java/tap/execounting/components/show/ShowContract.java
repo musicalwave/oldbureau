@@ -46,6 +46,8 @@ public class ShowContract {
 	private Zone bodyZone;
 	@Property
 	private Event loopEvent;
+	@Property
+	private String loopComment;
 	@Component
 	private AddEvent eventEditor;
 	@Component

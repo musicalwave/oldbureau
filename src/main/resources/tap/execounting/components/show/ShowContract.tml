@@ -179,8 +179,10 @@
                         </t:eventlink>
                         )
                         <t:if test="loopEvent.comment">
-                            <br/>
-                            &#09;${loopEvent.comment}
+                            <t:loop source="loopEvent.getComments()" value="loopComment">
+                                <br/>
+                                <t:outputraw value="${loopComment}"/>
+                            </t:loop>
                         </t:if>
                     </div>
                 </t:loop>

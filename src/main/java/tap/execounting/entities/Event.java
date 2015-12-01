@@ -4,12 +4,15 @@ import org.apache.tapestry5.beaneditor.NonVisual;
 import org.apache.tapestry5.beaneditor.Validate;
 import tap.execounting.data.EventState;
 import tap.execounting.entities.interfaces.Dated;
+import tap.execounting.util.DateUtil;
+import tap.execounting.util.Pair;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 import static tap.execounting.data.Const.freeFromSchool;
 import static tap.execounting.data.Const.freeFromTeacher;
@@ -124,6 +127,12 @@ public class Event implements Comparable<Event>, Dated {
 
 	private String comment;
 
+	@NonVisual
+	private int shift_count;
+
+    @NonVisual
+    private boolean has_legal_shift;
+
 	@ManyToMany
 	@JoinTable(name = "events_contracts", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = { @JoinColumn(name = "contract_id") })
 	private List<Contract> contracts = new ArrayList<>();
@@ -225,6 +234,10 @@ public class Event implements Comparable<Event>, Dated {
 	public String getComment() {
 		return comment;
 	}
+
+    public String[] getComments() {
+        return comment.split("\\n");
+    }
 
 	public void setComment(String comment) {
 		this.comment = comment;
@@ -341,16 +354,92 @@ public class Event implements Comparable<Event>, Dated {
 		return false;
 	}
 
+	private Pair<Date,Date> getLegalShiftInterval(Date date, List<Date> dates) {
+        if (date != null &&
+            dates != null &&
+            dates.size() > 1) {
+                for (int i = 0; i < dates.size() - 1; i++)
+                     if (date == dates.get(i)) {
+                         if (i == 0)
+                             return new Pair<>(date, dates.get(i + 1));
+                         else if (i == dates.size() - 1)
+                             return new Pair<>(dates.get(i - 1), date);
+                         else
+                             return new Pair<>(dates.get(i - 1), dates.get(i + 1));
+                }
+        }
+
+		return null;
+	}
+
 	public void move(EventState newState, Date newDate) {
-		String moveComment = String.format(
-				"\n$%s: %2$tm %2$tm %2$tY -- %3$tm %3$tm %3$tY",
-				newState.toString(), this.date, newDate);
-		if (comment == null)
-			comment = "";
-		this.comment = this.comment.concat(moveComment);
+        addComment(getShiftComment(newState, newDate));
+        updateShiftCount(newState, newDate);
+		updateFacility(newDate);
 		setState(planned);
 		setDate(newDate);
 	}
+
+    private void updateFacility(Date newDate) {
+        Contract contract = getFirstContract();
+        if(contract != null) {
+            Teacher teacher = contract.getTeacher();
+            if(teacher != null) {
+                Integer newFacilityId = teacher.getFacilityIdByDate(newDate);
+                if(newFacilityId != null)
+                    facilityId = newFacilityId;
+            }
+        }
+
+    }
+
+    private void updateShiftCount(EventState newState, Date newDate) {
+       	if(newState == EventState.movedByClient) {
+                if(legalShift(newDate))
+                    has_legal_shift = true;
+                else
+                    shift_count++;
+        }
+    }
+
+    private String getShiftComment(EventState newState, Date newDate) {
+        String shiftCommentBlank = "$%s: %s -> %s";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return String.format(shiftCommentBlank,
+                             newState.toString(),
+                             dateFormat.format(date),
+                             dateFormat.format(newDate));
+        }
+
+    private void addComment(String newComment) {
+        if (comment == null || comment.isEmpty())
+            comment = newComment;
+        else
+            comment = comment.concat("\n" + newComment);
+    }
+
+    private boolean legalShift(Date newDate) {
+	    // only one legal shift per event is allowed
+        if(has_legal_shift)
+            return false;
+
+        Contract contract = getFirstContract();
+        if(contract != null && contract.hasSchedule()) {
+            List<Date> eventDates = contract.getExtendedEventDates();
+            Pair<Date, Date> legalInterval = getLegalShiftInterval(date, eventDates);
+            if (legalInterval != null && !DateUtil.between(newDate, legalInterval.left, legalInterval.right))
+                return false;
+		}
+
+		return true;
+	}
+
+    public Contract getFirstContract() {
+        if(contracts != null && !contracts.isEmpty())
+            return contracts.get(0);
+
+        return null;
+    }
 
 	public boolean wasMoved() {
 		if (comment.contains(EventState.movedByClient.toString())
@@ -497,4 +586,8 @@ public class Event implements Comparable<Event>, Dated {
     public void setStateName(String stateName) {
         this.stateName = stateName;
     }
+
+	public int getShiftCount() {
+		return shift_count;
+	}
 }

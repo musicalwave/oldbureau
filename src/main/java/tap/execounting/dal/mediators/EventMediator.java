@@ -125,35 +125,25 @@ public class EventMediator extends ProtoMediator<Event> implements EventMed {
 
     public void move(EventState newState, Date newDate, EventTransferType transferType)
             throws IllegalAccessException {
+
+        unit = dao.find(Event.class, unit.getId());
+
         if (transferType == EventTransferType.SCHEDULED) {
-            // TODO group scheduled transfers
-            // 1. Check that event has only one contract on it. Group events are
-            // not for scheduled transfer yet.
-            unit = dao.find(Event.class, unit.getId());
+
             if (unit.getContracts().size() > 1)
                 throw new IllegalAccessException(
                         "Перенос по расписанию, пока недоступен для групповых занятий");
-            // 2. Check that contract have schedule.
-            Contract con = unit.getContracts().get(0);
+
+            Contract con = unit.getFirstContract();
+
             if (!con.hasSchedule())
                 throw new IllegalAccessException(
                         "По данному договору расписания не найдено.");
-            // 3. Find the latest event in contract even if it is current event.
-            List<Event> events = con.getEvents(true);
-            Event last = events.get(events.size() - 1);
-            // 4. Get day of the week for the latest event, and increment that;
-            newDate = DateUtil.datePlusDays(last.getDate(), 1);
-            int dow = DateUtil.dayOfWeekRus(newDate);
 
-            WeekSchedule s = con.getSchedule();
-            // 5. Get next day of the week in schedule for that contract.
-            while (!s.get(dow)) {
-                newDate = DateUtil.datePlusDays(newDate, 1);
-                dow = DateUtil.dayOfWeekRus(newDate);
-            }
-            // 6. Set newDate.
-            // 7. Move the event.
+            List<Date> eventDates = con.getOrderedEventDates();
+            newDate = con.getNextDateBySchedule(eventDates.get(eventDates.size() - 1));
         }
+
         unit.move(newState, newDate);
         save(unit);
     }

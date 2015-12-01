@@ -7,6 +7,7 @@ import tap.execounting.util.DateUtil;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -166,6 +167,11 @@ public class Teacher implements Deletable {
 		default:
 			return null;
 		}
+	}
+
+	public Integer getFacilityIdByDate(Date date){
+		Calendar calendarDate = DateUtil.getMoscowCalendar(date);
+		return getScheduleDay(DateUtil.dayOfWeekRus(calendarDate.getTime()));
 	}
 
 	public Date getProbationEndDate() {

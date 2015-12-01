@@ -439,20 +439,24 @@ public class Contract implements Comparable<Contract>, Dated {
     @NonVisual
     public List<Date> generateFreeDates(Date dateOfFirstEvent) {
         int lessons_remain = getEventsRemain();
-        List<Date> new_event_dates = new ArrayList<>(lessons_remain);
-        Calendar date = DateUtil.getMoscowCalendar(dateOfFirstEvent);
+        return generateDatesBySchedule(dateOfFirstEvent, lessons_remain);
+    }
 
-        while (lessons_remain > 0) {
-            boolean the_date_is_ok = schedule.get(dayOfWeekRus(date.getTime()));
-            if(the_date_is_ok){
-                new_event_dates.add(date.getTime());
-                lessons_remain--;
+    @NonVisual
+    public List<Date> generateDatesBySchedule(Date firstDate, int datesToGenerate) {
+        List<Date> dates = new ArrayList<>(datesToGenerate);
+        Calendar calendarDate = DateUtil.getMoscowCalendar(firstDate);
+        while(datesToGenerate > 0) {
+            if(schedule.get(dayOfWeekRus(calendarDate.getTime()))){
+                dates.add(calendarDate.getTime());
+                datesToGenerate--;
             }
-            date.add(DAY_OF_WEEK, 1);
+            calendarDate.add(DAY_OF_WEEK, 1);
         }
 
-        return new_event_dates;
+        return dates;
     }
+
 
     private boolean notFree() {
         return contractTypeId != FreeFromSchool
@@ -660,5 +664,40 @@ public class Contract implements Comparable<Contract>, Dated {
 
     public void setLastScheduledEventFacility(String lastScheduledEventFacility) {
         this.lastScheduledEventFacility = lastScheduledEventFacility;
+    }
+
+    public List<Date> getOrderedEventDates() {
+        List<Date> dates = new ArrayList<>(events.size());
+        for(Event event: events)
+            dates.add(event.getDate());
+        Collections.sort(dates);
+        return dates;
+    }
+
+    public Date getNextDateBySchedule(Date date) {
+        Calendar calendarDate = DateUtil.getMoscowCalendar(date);
+
+        do calendarDate.add(Calendar.DAY_OF_YEAR, 1);
+        while(!schedule.get(dayOfWeekRus(calendarDate.getTime())));
+
+        return calendarDate.getTime();
+    }
+
+    public Date getPrevDateBySchedule(Date date) {
+        Calendar calendarDate = DateUtil.getMoscowCalendar(date);
+
+        do calendarDate.add(Calendar.DAY_OF_YEAR, -1);
+        while(!schedule.get(dayOfWeekRus(calendarDate.getTime())));
+
+        return calendarDate.getTime();
+    }
+
+    public List<Date> getExtendedEventDates() {
+        List<Date> eventDates = getOrderedEventDates();
+        List<Date> extendedEventDates = new ArrayList<>();
+        extendedEventDates.add(getPrevDateBySchedule(eventDates.get(0)));
+        extendedEventDates.addAll(eventDates);
+        extendedEventDates.add(getNextDateBySchedule(eventDates.get(eventDates.size() - 1)));
+        return  extendedEventDates;
     }
 }

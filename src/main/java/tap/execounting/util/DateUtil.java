@@ -257,6 +257,15 @@ public class DateUtil {
     public static Date now() {
         return new Date();
     }
+
+    public  static boolean between(Date date, Date leftDate, Date rightDate) {
+        return (date.after(leftDate) && date.before(rightDate));
+    }
+
+    public static boolean betweenInclusive(Date date, Date leftDate, Date rightDate){
+        return (date == leftDate) || (date == rightDate) || between(date, leftDate, rightDate);
+    }
+
 }
 
 class DatedComparator implements Comparator<Dated> {
@@ -271,3 +280,5 @@ class DateComparator implements Comparator<Date> {
         return one.compareTo(two);
     }
 }
+
+
